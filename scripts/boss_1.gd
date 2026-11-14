@@ -12,10 +12,24 @@ func _ready() -> void:
 	$AnimationPlayer.play("intro")
 
 func _process(delta: float) -> void:
+	if global.playerpos.x > position.x:
+		$Node2D.scale.x = 1
+	else:
+	
+		$Node2D.scale.x = -1
+	$hud/hp.value = hp
+	print(str(hp))
+	
 	if hitstun >= 1:
 		hitstun -= 1
 	if not $AnimationPlayer.is_playing():
-		$AnimationPlayer.play("lightbeam")
+		if randi_range(1,3) == 1:
+			$AnimationPlayer.play("lightbeam")
+		else:
+			if randi_range(1,2) == 1:
+				$AnimationPlayer.play("scythetoss")
+			else:
+				$AnimationPlayer.play("scythemelee")
 	
 	if not nomove:
 		$pivot.look_at(targetpos)
@@ -97,3 +111,24 @@ func togglemovement():
 func _on_timer_timeout() -> void:
 	targetpos = Vector2(randi_range(0,1152),randi_range(300,500))
 	$Timer.start(randf_range(2,4))
+
+func scythedash():
+	var targetpospos : Vector2 = global.playerpos
+	while position.distance_to(targetpospos) > 80:
+		nomove = true
+		$pivot/dasher.emitting = true
+		$pivot.look_at(targetpospos)
+		velocity += $pivot.transform.x * 800
+		if hitstun > 1:
+			break
+		await get_tree().process_frame
+	
+	$pivot/dasher.emitting = false
+	await get_tree().create_timer(0.2)
+	nomove = false
+
+func scythething():
+	
+	var b = preload("res://scenes/scythemelee.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = position

@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5quog3a17pyv"]
+[gd_scene load_steps=29 format=3 uid="uid://c5quog3a17pyv"]
 
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_gu4qg"]
 [ext_resource type="Script" uid="uid://b77ec0rb5kc18" path="res://scripts/boss_1.gd" id="1_vwre8"]
 [ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="2_6wt1p"]
 [ext_resource type="Texture2D" uid="uid://dkytmeuo4hnnc" path="res://assets/halo.svg" id="3_qrnk6"]
 [ext_resource type="Texture2D" uid="uid://dt7sxtvsvh157" path="res://assets/spark-3.svg" id="5_2ng8k"]
+[ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="6_qiwaa"]
 
 [sub_resource type="Gradient" id="Gradient_qiwaa"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -188,6 +189,27 @@ tracks/2/keys = {
 "values": [false, false]
 }
 
+[sub_resource type="Animation" id="Animation_qiwaa"]
+resource_name = "scythemelee"
+length = 1.2
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"scythedash"
+}, {
+"args": [],
+"method": &"scythething"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_vwre8"]
 resource_name = "scythetoss"
 length = 2.0
@@ -211,6 +233,7 @@ _data = {
 &"RESET": SubResource("Animation_6wt1p"),
 &"intro": SubResource("Animation_qrnk6"),
 &"lightbeam": SubResource("Animation_2ng8k"),
+&"scythemelee": SubResource("Animation_qiwaa"),
 &"scythetoss": SubResource("Animation_vwre8")
 }
 
@@ -231,6 +254,12 @@ initial_velocity_min = 1000.0
 initial_velocity_max = 1000.0
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_glbka")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ng8k"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiwaa"]
+bg_color = Color(0.68, 0, 0, 1)
 
 [node name="boss1" type="CharacterBody2D"]
 collision_layer = 4
@@ -285,5 +314,44 @@ process_material = SubResource("ParticleProcessMaterial_5xsh4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_2ng8k")
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="hp" type="ProgressBar" parent="hud"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -342.0
+offset_top = -613.0
+offset_right = 342.0
+offset_bottom = -606.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_2ng8k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_qiwaa")
+max_value = 50.0
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="hud"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.5
+offset_top = -671.0
+offset_right = 100.5
+offset_bottom = -586.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_qiwaa")
+theme_override_font_sizes/font_size = 30
+text = "-Fallen Divinity-"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
