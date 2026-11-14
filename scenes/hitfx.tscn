@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://52txyqel34aj"]
+
+[ext_resource type="Texture2D" uid="uid://yshnmnjvpiyv" path="res://assets/iaislash.svg" id="1_ybt6w"]
+[ext_resource type="Script" uid="uid://cowxbedlgdqg3" path="res://shaders/par.gd" id="2_jlpdl"]
+
+[sub_resource type="Gradient" id="Gradient_jlpdl"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qfrtp"]
+gradient = SubResource("Gradient_jlpdl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gxb4i"]
+particle_flag_disable_z = true
+angle_min = -30.0
+angle_max = 30.0
+gravity = Vector3(0, 98, 0)
+color_ramp = SubResource("GradientTexture1D_qfrtp")
+
+[node name="hitfx" type="GPUParticles2D"]
+rotation = -0.242364
+emitting = false
+amount = 1
+texture = ExtResource("1_ybt6w")
+lifetime = 0.18
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gxb4i")
+script = ExtResource("2_jlpdl")
+
+[node name="hitfx2" type="GPUParticles2D" parent="."]
+rotation = 0.523599
+emitting = false
+amount = 1
+texture = ExtResource("1_ybt6w")
+lifetime = 0.18
+one_shot = true
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_gxb4i")
+script = ExtResource("2_jlpdl")

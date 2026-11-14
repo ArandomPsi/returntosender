@@ -1,0 +1,289 @@
+[gd_scene load_steps=25 format=3 uid="uid://c5quog3a17pyv"]
+
+[ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_gu4qg"]
+[ext_resource type="Script" uid="uid://b77ec0rb5kc18" path="res://scripts/boss_1.gd" id="1_vwre8"]
+[ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="2_6wt1p"]
+[ext_resource type="Texture2D" uid="uid://dkytmeuo4hnnc" path="res://assets/halo.svg" id="3_qrnk6"]
+[ext_resource type="Texture2D" uid="uid://dt7sxtvsvh157" path="res://assets/spark-3.svg" id="5_2ng8k"]
+
+[sub_resource type="Gradient" id="Gradient_qiwaa"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_unxc3"]
+gradient = SubResource("Gradient_qiwaa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_glbka"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.2
+color = Color(0, 0, 0, 0.372549)
+color_ramp = SubResource("GradientTexture1D_unxc3")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ng8k"]
+size = Vector2(42, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vwre8"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrnk6"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wt1p"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ng8k"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qiwaa"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unxc3"]
+atlas = ExtResource("1_gu4qg")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glbka"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vwre8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrnk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wt1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ng8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qiwaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unxc3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_6wt1p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pivot/dasher:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qrnk6"]
+resource_name = "intro"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"spawnspawnthingy"
+}, {
+"args": [Vector2(0, -20), 60],
+"method": &"move"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_2ng8k"]
+resource_name = "lightbeam"
+length = 4.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"lightdashthing"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("pivot/dasher:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.63333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_vwre8"]
+resource_name = "scythetoss"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnscythetoss"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qrnk6"]
+_data = {
+&"RESET": SubResource("Animation_6wt1p"),
+&"intro": SubResource("Animation_qrnk6"),
+&"lightbeam": SubResource("Animation_2ng8k"),
+&"scythetoss": SubResource("Animation_vwre8")
+}
+
+[sub_resource type="Gradient" id="Gradient_unxc3"]
+offsets = PackedFloat32Array(0, 0.28, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_glbka"]
+gradient = SubResource("Gradient_unxc3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5xsh4"]
+particle_flag_disable_z = true
+angle_min = 180.0
+angle_max = 180.0
+direction = Vector3(-1, 0, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_glbka")
+
+[node name="boss1" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_vwre8")
+
+[node name="aura" type="GPUParticles2D" parent="."]
+amount = 20
+texture = ExtResource("2_6wt1p")
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_glbka")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2ng8k")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="sprite" type="AnimatedSprite2D" parent="Node2D"]
+texture_filter = 1
+position = Vector2(0, 26)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_glbka")
+autoplay = "default"
+frame_progress = 0.407118
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(0, -48)
+scale = Vector2(0.424242, 0.424242)
+texture = ExtResource("3_qrnk6")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_qrnk6")
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="pivot" type="Node2D" parent="."]
+
+[node name="dasher" type="GPUParticles2D" parent="pivot"]
+position = Vector2(172, -7)
+scale = Vector2(1, 0.480003)
+emitting = false
+texture = ExtResource("5_2ng8k")
+lifetime = 0.2
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5xsh4")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_2ng8k")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

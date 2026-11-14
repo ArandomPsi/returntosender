@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfveknr2vwmtu"]
+
+[ext_resource type="Script" uid="uid://bvr76t72ejd4y" path="res://scripts/bouncething.gd" id="1_nda56"]
+[ext_resource type="Texture2D" uid="uid://dkytmeuo4hnnc" path="res://assets/halo.svg" id="2_3hm8l"]
+[ext_resource type="Script" uid="uid://tfjssjgfscl3" path="res://scripts/lines.gd" id="2_bubex"]
+
+[sub_resource type="Gradient" id="Gradient_3hm8l"]
+colors = PackedColorArray(1, 0.833333, 0, 0, 1, 0.831373, 0, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3hm8l"]
+radius = 55.0091
+
+[node name="bouncething" type="Node2D"]
+script = ExtResource("1_nda56")
+
+[node name="Line2D" type="Line2D" parent="."]
+default_color = Color(1, 0.833333, 0, 1)
+gradient = SubResource("Gradient_3hm8l")
+script = ExtResource("2_bubex")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_3hm8l")
+
+[node name="Halo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -3)
+texture = ExtResource("2_3hm8l")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

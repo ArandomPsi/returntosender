@@ -1,0 +1,128 @@
+[gd_scene load_steps=13 format=3 uid="uid://dr7jeu2rvnrl1"]
+
+[ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_5v8is"]
+[ext_resource type="Script" uid="uid://dtdox1dyusrly" path="res://scripts/scythe.gd" id="1_te5lg"]
+[ext_resource type="Texture2D" uid="uid://dryx4lu64cpfl" path="res://assets/burst hit-2.svg" id="3_2rqvt"]
+[ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="3_pjtfg"]
+
+[sub_resource type="Gradient" id="Gradient_lbqtu"]
+offsets = PackedFloat32Array(0, 0.402482, 0.769504, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cncwm"]
+gradient = SubResource("Gradient_lbqtu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5yv34"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(1, 1, 1, 0.388235)
+color_ramp = SubResource("GradientTexture1D_cncwm")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5v8is"]
+radius = 115.974
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_2rqvt"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_35dfx"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lbqtu"]
+gradient = SubResource("Gradient_35dfx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cncwm"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 80, 1)
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 195.36
+initial_velocity_max = 195.36
+gravity = Vector3(0, 0, 0)
+scale_min = 0.05
+scale_max = 0.05
+color = Color(0.796078, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_lbqtu")
+
+[node name="scythe" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_te5lg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("1_5v8is")
+offset = Vector2(2, -10)
+region_enabled = true
+region_rect = Rect2(6.928, 28.4689, 22.072, 36.2395)
+
+[node name="spinny" type="GPUParticles2D" parent="Sprite2D"]
+scale = Vector2(0.2, 0.2)
+emitting = false
+amount = 2
+texture = ExtResource("3_2rqvt")
+lifetime = 0.3
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_5yv34")
+
+[node name="trail" type="Sprite2D" parent="Sprite2D"]
+visible = false
+modulate = Color(0, 0, 0, 0.756863)
+show_behind_parent = true
+texture_filter = 1
+rotation = -0.218427
+texture = ExtResource("1_5v8is")
+offset = Vector2(2, -10)
+region_enabled = true
+region_rect = Rect2(6.928, 28.4689, 22.072, 36.2395)
+
+[node name="trail2" type="Sprite2D" parent="Sprite2D/trail"]
+modulate = Color(0, 0, 0, 0.447059)
+show_behind_parent = true
+texture_filter = 1
+rotation = -0.15859
+texture = ExtResource("1_5v8is")
+offset = Vector2(2, -10)
+region_enabled = true
+region_rect = Rect2(6.928, 28.4689, 22.072, 36.2395)
+
+[node name="trail3" type="Sprite2D" parent="Sprite2D/trail/trail2"]
+modulate = Color(0, 0, 0, 0.278431)
+show_behind_parent = true
+texture_filter = 1
+rotation = -0.212295
+texture = ExtResource("1_5v8is")
+offset = Vector2(2, -10)
+region_enabled = true
+region_rect = Rect2(6.928, 28.4689, 22.072, 36.2395)
+
+[node name="playerdetector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerdetector"]
+shape = SubResource("CircleShape2D_5v8is")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5v8is")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_2rqvt")
+position = Vector2(9, -28)
+emitting = false
+amount = 20
+texture = ExtResource("3_pjtfg")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_cncwm")

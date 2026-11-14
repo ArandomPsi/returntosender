@@ -15,21 +15,32 @@ var spell1 : int = 0 #reap, firebolt
 
 var hp : int = 20
 
+var camerashake : int = 0
+
 func _ready() -> void:
 	hp = 20
+	global.player = self
 
 func _process(delta: float) -> void:
+	global.playerpos = position
 	attackcooldown -= 1
+	
+	camerashake -= 1
+	camerashake = clamp(camerashake,0,20)
+	
 	attackcontrols()
 	movementcontrols()
 	updatepos(delta)
 	updatevisuals()
 	createtrail(0.1)
+	
+	
+	
 
 func attackcontrols():
 	if Input.is_action_just_pressed("basicattack") and attackcooldown < 1:
-		$pivot.look_at(get_global_mouse_position())
 		slash()
+		camerashake =6
 		
 
 func movementcontrols():
@@ -58,6 +69,7 @@ func updatepos(delta):
 
 func updatevisuals():
 	normalanimations()
+	$Camera2D.offset = Vector2(randf_range(-1,1),randf_range(-1,1)) * camerashake/1.5
 
 func normalanimations():
 	if movedir > 0:
@@ -101,6 +113,8 @@ func slash():
 	var v = Input.get_vector("left","right","up","down")
 	if not v == Vector2.ZERO:
 		$pivot.rotation = Input.get_vector("left","right","up","down").angle()
+	else:
+		$pivot.rotation = Vector2($flip.scale.x,0).angle()
 	
 	var b = preload("res://scenes/slash.tscn").instantiate()
 	add_child(b)
@@ -120,3 +134,8 @@ func createtrail(time : float):
 	b.sprite_frames = $flip/sprite.sprite_frames.duplicate()
 	b.animation = $flip/sprite.animation
 	b.frame = $flip/sprite.frame
+
+func spawnparry(pos):
+	var b = preload("res://scenes/hitfx.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = pos

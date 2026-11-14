@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://r6doo2h3h5pt"]
+
+[ext_resource type="Texture2D" uid="uid://cwap13bf5kp4b" path="res://assets/light-2.svg" id="1_pjh87"]
+[ext_resource type="Script" uid="uid://b4eqbeu67qc7u" path="res://scripts/angelspawn.gd" id="1_rmp5q"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rmp5q"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_cs36i"]
+offsets = PackedFloat32Array(0, 0.265714, 0.548571, 0.991429)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qiwaa"]
+gradient = SubResource("Gradient_cs36i")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6r6vk"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0.9, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_qiwaa")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3n0gn"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0, 0, 0, 1)
+color_ramp = SubResource("GradientTexture1D_qiwaa")
+
+[node name="angelspawn" type="Node2D"]
+z_index = 2
+script = ExtResource("1_rmp5q")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_rmp5q")
+position = Vector2(-21, 0)
+scale = Vector2(-0.37475, 1.07944)
+texture = ExtResource("1_pjh87")
+lifetime = 0.6
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_6r6vk")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+scale = Vector2(0.28, 1)
+texture = ExtResource("1_pjh87")
+lifetime = 0.6
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_3n0gn")

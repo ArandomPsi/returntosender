@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://tv72kjub84k0" path="res://scripts/slash.gd" id="1_jrt4b"]
 [ext_resource type="Texture2D" uid="uid://c3jawn18nnya6" path="res://assets/heavyslash1.svg" id="2_pim1l"]
 [ext_resource type="Texture2D" uid="uid://cet8s3nf6beor" path="res://assets/heavyslash2.svg" id="3_xjeia"]
-[ext_resource type="PackedScene" path="res://scenes/attackbox.tscn" id="3_y5mep"]
 [ext_resource type="Texture2D" uid="uid://ehfyn5syagyb" path="res://assets/heavyslash3.svg" id="4_0fel2"]
 [ext_resource type="Texture2D" uid="uid://bc0gx8ht508wp" path="res://assets/heavyslash4.svg" id="5_q08yp"]
+[ext_resource type="Script" uid="uid://pxxwa45lnr0d" path="res://scripts/deflector.gd" id="6_pim1l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lrr4d"]
 animations = [{
@@ -30,8 +30,8 @@ animations = [{
 "speed": 24.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nmjq"]
-size = Vector2(127, 20)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gu08y"]
+size = Vector2(138, 106)
 
 [node name="slash" type="Node2D"]
 script = ExtResource("1_jrt4b")
@@ -39,19 +39,19 @@ script = ExtResource("1_jrt4b")
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 modulate = Color(0, 2, 2, 1)
 z_index = 1
-position = Vector2(13, 2)
-scale = Vector2(0.618705, -0.438849)
+position = Vector2(2, 2)
+scale = Vector2(0.705036, -0.705036)
 sprite_frames = SubResource("SpriteFrames_lrr4d")
 autoplay = "default"
-frame = 4
-frame_progress = 1.0
+frame = 1
 
-[node name="attackbox" parent="." instance=ExtResource("3_y5mep")]
-collision_mask = 4
-script = null
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 12
+script = ExtResource("6_pim1l")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="attackbox"]
-position = Vector2(27.5, 0)
-shape = SubResource("RectangleShape2D_3nmjq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gu08y")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

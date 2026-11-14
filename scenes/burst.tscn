@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkt8125bll35g"]
+
+[ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="1_o0sum"]
+[ext_resource type="Script" uid="uid://cowxbedlgdqg3" path="res://shaders/par.gd" id="2_slv0k"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nwpkq"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_8w3un"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vk0vg"]
+gradient = SubResource("Gradient_8w3un")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tgix8"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 225.64
+initial_velocity_max = 405.13
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.2
+color = Color(1, 0.95, 0, 1)
+color_ramp = SubResource("GradientTexture1D_vk0vg")
+
+[node name="burst" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_nwpkq")
+emitting = false
+texture = ExtResource("1_o0sum")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_tgix8")
+script = ExtResource("2_slv0k")
