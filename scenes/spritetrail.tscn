@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://dst41nlv3444r"]
+
+[ext_resource type="Shader" path="res://shaders/colorchange.gdshader" id="1_27k5v"]
+[ext_resource type="Script" uid="uid://dneee23pu5ram" path="res://shaders/spritetrail.gd" id="1_ithwr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_po4rd"]
+shader = ExtResource("1_27k5v")
+shader_parameter/replace_color = Color(0.1505, 0, 0.43, 1)
+shader_parameter/alpha = 1.0
+
+[node name="spritetrail" type="AnimatedSprite2D"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_po4rd")
+script = ExtResource("1_ithwr")
