@@ -844,12 +844,15 @@ shape = SubResource("CircleShape2D_ikfqe")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lm80i")
+volume_db = -12.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_2sk4p")
+volume_db = -12.0
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_tjn6w")
+volume_db = -12.0
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_0x2v0")
