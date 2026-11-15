@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dedf2qg1ey8xq"]
+[gd_scene load_steps=32 format=3 uid="uid://dedf2qg1ey8xq"]
 
 [ext_resource type="Script" uid="uid://dksxgfqbfm1hh" path="res://scripts/boss2.gd" id="1_lm80i"]
 [ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="2_qkqg0"]
@@ -7,6 +7,7 @@
 [ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="6_dqr0h"]
 [ext_resource type="AudioStream" uid="uid://bndlx0p5vyb7c" path="res://assets/The Cruel Angels Thesis.mp3" id="6_lm80i"]
 [ext_resource type="Texture2D" uid="uid://cemmq77kht7ya" path="res://assets/sparkle.svg" id="6_qkqg0"]
+[ext_resource type="AudioStream" uid="uid://how5a1hcpwn4" path="res://assets/Akame ga Kill.mp3" id="8_2sk4p"]
 
 [sub_resource type="Curve" id="Curve_xhjvg"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994094, 0), 0.0, 0.0, 0, 0]
@@ -78,31 +79,31 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/2/path = NodePath("hud/fadething:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("hud/fadething:modulate")
+tracks/3/path = NodePath("hud/GPUParticles2D:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("hud/GPUParticles2D:emitting")
+tracks/4/path = NodePath("AudioStreamPlayer:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -233,7 +234,8 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_qrnk6"]
 resource_name = "intro"
-length = 12.0
+length = 14.0
+step = 1.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -301,6 +303,18 @@ tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(6.26667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(14),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -550,5 +564,8 @@ shape = SubResource("CircleShape2D_ikfqe")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lm80i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_2sk4p")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

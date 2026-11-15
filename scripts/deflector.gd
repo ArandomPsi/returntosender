@@ -8,6 +8,7 @@ func _on_body_entered(body: Node2D) -> void:
 	else:
 		body.velocity += global_transform.x * 800
 		body.hp -= 1 + get_parent().get_parent().hitcombo/2
+		get_parent().fabababa()
 		
 	
 	global.player.velocity = global_transform.x * -600
