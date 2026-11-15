@@ -13,14 +13,16 @@ var consecutiveslashdir : int = 1
 
 var spell1 : int = 0 #reap, firebolt
 
-var hp : int = 20
+var hp : int = 5
 
 var camerashake : int = 0
 
 var hitcombo : int = 0
 
+var parryframes : int = 0
+
 func _ready() -> void:
-	hp = 20
+	hp = 5
 	global.player = self
 	var tween = create_tween()
 	tween.tween_property($hud/ColorRect,"color:a",0.0,0.8).set_trans(Tween.TRANS_CUBIC)
@@ -29,13 +31,19 @@ func _process(delta: float) -> void:
 	global.playerpos = position
 	attackcooldown -= 1
 	
+	$hud/hp.value = hp
+	
 	camerashake -= 1
 	camerashake = clamp(camerashake,0,20)
+	parryframes -= 1
+	parryframes = clamp(parryframes,0,60)
 	
-	attackcontrols()
-	movementcontrols()
+	if not $AnimationPlayer.is_playing():
+		attackcontrols()
+		movementcontrols()
+		updatevisuals()
 	updatepos(delta)
-	updatevisuals()
+
 	createtrail(0.1)
 	
 	if is_on_floor():
@@ -131,6 +139,7 @@ func slash():
 	b.scale.y = $flip.scale.x
 	b.rotation = $pivot.rotation
 	attackcooldown = 30
+	parryframes = 30
 	velocity = $pivot.transform.x * 800
 	
 
@@ -138,7 +147,7 @@ func createtrail(time : float):
 	var b = preload("res://scenes/spritetrail.tscn").instantiate()
 	b.time = time
 	get_tree().current_scene.add_child(b)
-	b.global_position = $flip/sprite	.global_position
+	b.global_position = $flip/sprite.global_position
 	b.scale = $flip/sprite.global_scale
 	b.rotation = $flip/sprite.global_rotation
 	b.sprite_frames = $flip/sprite.sprite_frames.duplicate()
@@ -149,9 +158,30 @@ func spawnparry(pos):
 	var b = preload("res://scenes/hitfx.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	b.position = pos
+
 func takedamage():
-	camerashake += 20
+	spawnparry(global_position)
+	if parryframes < 1:
+		camerashake += 20
+		hp -= 1
+		var b = preload("res://scenes/hitsound.tscn").instantiate()
+		get_tree().current_scene.add_child(b)
+	else:
+		$parry.play()
+		spawncircles()
+		hp += 5
+		hp = clamp(hp,0,5)
+		parryframes = 5
+		attackcooldown = 0
+
+func spawncircles():
+	var b = preload("res://scenes/counter.tscn").instantiate()
+	add_child(b)
+	
 
 func addcombo():
 	hitcombo += 1
 	$hud/combometer.scale = Vector2(1,1) * 2
+
+func challenge():
+	$AnimationPlayer.play("challenge")

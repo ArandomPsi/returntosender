@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bolgslim8mh4n"]
+[gd_scene load_steps=8 format=3 uid="uid://bolgslim8mh4n"]
 
 [ext_resource type="Texture2D" uid="uid://dt7sxtvsvh157" path="res://assets/spark-3.svg" id="1_gvwdu"]
 [ext_resource type="Script" uid="uid://cowxbedlgdqg3" path="res://shaders/par.gd" id="2_qowlg"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="3_dh24l"]
 
 [sub_resource type="Gradient" id="Gradient_qowlg"]
 offsets = PackedFloat32Array(0, 0.28, 1)
@@ -22,6 +23,9 @@ initial_velocity_max = 1500.0
 gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_glbka")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ec0a7"]
+size = Vector2(424, 74.9996)
+
 [node name="dasher" type="GPUParticles2D"]
 position = Vector2(9.53674e-07, -7)
 rotation = 1.5708
@@ -33,3 +37,9 @@ one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qowlg")
 script = ExtResource("2_qowlg")
+
+[node name="fabababa" parent="." instance=ExtResource("3_dh24l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+position = Vector2(48, 4.72937e-11)
+shape = SubResource("RectangleShape2D_ec0a7")

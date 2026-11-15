@@ -3,13 +3,15 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
+	
 	if body.has_method("reflect"):
 		body.reflect()
 	else:
 		body.velocity += global_transform.x * 800
-		body.damage(1 + get_parent().get_parent().hitcombo/2)
+		body.damage(4 + get_parent().get_parent().hitcombo/1.5)
 		
-		get_parent().fabababa()
+		if get_parent().has_method("fabababa"):
+			get_parent().fabababa()
 		
 	
 	global.player.velocity = global_transform.x * -600
