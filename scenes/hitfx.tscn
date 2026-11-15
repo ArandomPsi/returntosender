@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://52txyqel34aj"]
+[gd_scene load_steps=7 format=3 uid="uid://52txyqel34aj"]
 
 [ext_resource type="Texture2D" uid="uid://yshnmnjvpiyv" path="res://assets/iaislash.svg" id="1_ybt6w"]
 [ext_resource type="Script" uid="uid://cowxbedlgdqg3" path="res://shaders/par.gd" id="2_jlpdl"]
+[ext_resource type="AudioStream" uid="uid://dp5t2fsmrt1j3" path="res://assets/parry-ultrakill.mp3" id="3_qfrtp"]
 
 [sub_resource type="Gradient" id="Gradient_jlpdl"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -37,3 +38,7 @@ one_shot = true
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_gxb4i")
 script = ExtResource("2_jlpdl")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qfrtp")
+autoplay = true

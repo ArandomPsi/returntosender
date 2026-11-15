@@ -163,11 +163,12 @@ func takedamage():
 	spawnparry(global_position)
 	if parryframes < 1:
 		camerashake += 20
+		$parry.play()
 		hp -= 1
 		var b = preload("res://scenes/hitsound.tscn").instantiate()
 		get_tree().current_scene.add_child(b)
 	else:
-		$parry.play()
+		
 		spawncircles()
 		hp += 5
 		hp = clamp(hp,0,5)

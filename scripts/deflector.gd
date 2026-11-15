@@ -6,6 +6,9 @@ func _on_body_entered(body: Node2D) -> void:
 	
 	if body.has_method("reflect"):
 		body.reflect()
+		var b = load("res://scenes/hitsound.tscn").instantiate()
+		get_tree().current_scene.add_child(b)
+		
 	else:
 		body.velocity += global_transform.x * 800
 		body.damage(1 + get_parent().get_parent().hitcombo/1.5)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cjc648jo20bgh" path="res://scripts/player.gd" id="1_dovo2"]
 [ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="3_qhqgy"]
 [ext_resource type="AudioStream" uid="uid://dhye6c2m1rlev" path="res://assets/sheathe.wav" id="4_dqkch"]
-[ext_resource type="AudioStream" uid="uid://dp5t2fsmrt1j3" path="res://assets/parry-ultrakill.mp3" id="5_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://wpe763hxgtfm" path="res://assets/hero_damage_less_harsh_02.wav" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("1_8afob")
@@ -275,5 +275,6 @@ libraries = {
 
 [node name="parry" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_qlg0r")
-volume_db = 5.0
+volume_db = 10.0
+pitch_scale = 2.0
 max_polyphony = 50
