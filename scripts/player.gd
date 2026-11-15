@@ -139,7 +139,7 @@ func slash():
 	b.scale.y = $flip.scale.x
 	b.rotation = $pivot.rotation
 	attackcooldown = 30
-	parryframes = 30
+	parryframes = 20
 	velocity = $pivot.transform.x * 800
 	
 
@@ -171,7 +171,7 @@ func takedamage():
 		spawncircles()
 		hp += 5
 		hp = clamp(hp,0,5)
-		parryframes = 5
+		parryframes = 2
 		attackcooldown = 0
 
 func spawncircles():

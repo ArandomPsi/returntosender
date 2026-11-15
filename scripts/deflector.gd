@@ -8,7 +8,7 @@ func _on_body_entered(body: Node2D) -> void:
 		body.reflect()
 	else:
 		body.velocity += global_transform.x * 800
-		body.damage(4 + get_parent().get_parent().hitcombo/1.5)
+		body.damage(1 + get_parent().get_parent().hitcombo/1.5)
 		
 		if get_parent().has_method("fabababa"):
 			get_parent().fabababa()
