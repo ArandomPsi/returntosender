@@ -106,6 +106,7 @@ region_rect = Rect2(110, 15, 4, 3)
 [node name="hud" type="CanvasLayer" parent="."]
 
 [node name="combometer" type="Label" parent="hud"]
+modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 offset_left = 18.0
 offset_top = 585.0

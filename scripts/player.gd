@@ -38,9 +38,10 @@ func _process(delta: float) -> void:
 	
 	if is_on_floor():
 		hitcombo = 0
-		$hud/combometer.visible = false
+		$hud/combometer.modulate.a = lerp($hud/combometer.modulate.a,0.0,0.1)
 	else:
-		$hud/combometer.visible = true
+		$hud/combometer.modulate.a = lerp($hud/combometer.modulate.a,1.0,0.1)
+		$hud/combometer.text = str(hitcombo) + "x"
 	
 	
 
