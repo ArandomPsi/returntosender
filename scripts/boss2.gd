@@ -22,12 +22,13 @@ func _process(delta: float) -> void:
 		$Node2D.scale.x = -1
 	$hud/hp.value = hp
 	
-	$Node2D/wing1.rotation_degrees = sin(t * 5) * 10
-	
+	$Node2D/wing1.rotation_degrees = sin(t * 4) * 20
+	$Node2D/wing2.rotation_degrees = -$Node2D/wing1.rotation_degrees
 	
 	if hitstun >= 1:
 		hitstun -= 1
-	#if not $AnimationPlayer.is_playing():
+	if not $AnimationPlayer.is_playing():
+		$AnimationPlayer.play("dash")
 		#if randi_range(1,3) == 1:
 			#$AnimationPlayer.play("lightbeam")
 		#else:
@@ -39,10 +40,10 @@ func _process(delta: float) -> void:
 	if not nomove:
 		$pivot.look_at(targetpos)
 		
-		velocity += $pivot.transform.x * 20
+		velocity += $pivot.transform.x * 50
 	
 	move_and_slide()
-	velocity *= 0.9
+	velocity *= 0.95
 
 func damage(amount):
 	hp -= 1
@@ -56,19 +57,39 @@ func togglemovement():
 
 func _on_timer_timeout() -> void:
 	targetpos = Vector2(randi_range(0,1152),randi_range(300,500))
-	$Timer.start(randf_range(2,4))
+	$Timer.start(randf_range(0.2,0.4))
 
 func scythedash():
 	var targetpospos : Vector2 = global.playerpos
 	while position.distance_to(targetpospos) > 80:
 		nomove = true
-		$pivot/dasher.emitting = true
+		
 		$pivot.look_at(targetpospos)
-		velocity += $pivot.transform.x * 800
+		velocity += $pivot.transform.x * 300
 		if hitstun > 1:
 			break
 		await get_tree().process_frame
-	
-	$pivot/dasher.emitting = false
+	velocity*=0.3
 	await get_tree().create_timer(0.2)
-	nomove = false
+	
+
+func goaboveplayer():
+	var tween = create_tween()
+	tween.tween_property(self,"position:x",global.playerpos.x,0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(self,"position:y",10,0.5).set_trans(Tween.TRANS_CUBIC)
+
+func dive():
+	velocity.y = 3000
+	await $Area2D.body_entered
+	var b = preload("res://scenes/burst.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = position
+
+func spawnbeam():
+	var b = preload("res://scenes/dasher.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = position
+
+func slash():
+	var b = preload("res://scenes/swordcircle.tscn").instantiate()
+	$Node2D.add_child(b)

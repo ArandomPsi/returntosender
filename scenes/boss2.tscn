@@ -1,10 +1,18 @@
-[gd_scene load_steps=23 format=3 uid="uid://dedf2qg1ey8xq"]
+[gd_scene load_steps=25 format=3 uid="uid://dedf2qg1ey8xq"]
 
 [ext_resource type="Script" uid="uid://dksxgfqbfm1hh" path="res://scripts/boss2.gd" id="1_lm80i"]
 [ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="2_qkqg0"]
+[ext_resource type="Script" uid="uid://cxsam56lmipfw" path="res://scripts/trail.gd" id="2_xhjvg"]
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="3_2sk4p"]
-[ext_resource type="Texture2D" uid="uid://dt7sxtvsvh157" path="res://assets/spark-3.svg" id="5_4n5qj"]
 [ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="6_dqr0h"]
+
+[sub_resource type="Curve" id="Curve_xhjvg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994094, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xhjvg"]
+offsets = PackedFloat32Array(0, 0.916279)
+colors = PackedColorArray(1, 0.833333, 0, 1, 0.933333, 1, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_qiwaa"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -64,18 +72,6 @@ tracks/1/keys = {
 "times": PackedFloat32Array(),
 "transitions": PackedFloat32Array(),
 "values": []
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/dasher:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_qrnk6"]
@@ -140,18 +136,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("pivot/dasher:emitting")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 2.63333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
 
 [sub_resource type="Animation" id="Animation_qiwaa"]
 resource_name = "scythemelee"
@@ -192,32 +176,100 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xhjvg"]
+resource_name = "dive"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.7, 0.766667, 0.833333, 1.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"goaboveplayer"
+}, {
+"args": [],
+"method": &"dive"
+}, {
+"args": [],
+"method": &"dive"
+}, {
+"args": [],
+"method": &"spawnbeam"
+}, {
+"args": [],
+"method": &"togglemovement"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_lm80i"]
+resource_name = "dash"
+length = 1.4
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.733333, 1.33333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"scythedash"
+}, {
+"args": [],
+"method": &"slash"
+}, {
+"args": [],
+"method": &"togglemovement"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qrnk6"]
 _data = {
 &"RESET": SubResource("Animation_6wt1p"),
+&"dash": SubResource("Animation_lm80i"),
+&"dive": SubResource("Animation_xhjvg"),
 &"intro": SubResource("Animation_qrnk6"),
 &"lightbeam": SubResource("Animation_2ng8k"),
 &"scythemelee": SubResource("Animation_qiwaa"),
 &"scythetoss": SubResource("Animation_vwre8")
 }
-
-[sub_resource type="Gradient" id="Gradient_unxc3"]
-offsets = PackedFloat32Array(0, 0.28, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_glbka"]
-gradient = SubResource("Gradient_unxc3")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5xsh4"]
-particle_flag_disable_z = true
-angle_min = 180.0
-angle_max = 180.0
-direction = Vector3(-1, 0, 0)
-spread = 0.0
-initial_velocity_min = 1000.0
-initial_velocity_max = 1000.0
-gravity = Vector3(0, 0, 0)
-color_ramp = SubResource("GradientTexture1D_glbka")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ng8k"]
 bg_color = Color(0, 0, 0, 1)
@@ -225,10 +277,20 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qiwaa"]
 bg_color = Color(0.68, 0, 0, 1)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ikfqe"]
+radius = 30.0167
+
 [node name="boss2" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_lm80i")
 metadata/_edit_horizontal_guides_ = [-69.0]
+
+[node name="trail" type="Line2D" parent="."]
+width = 20.0
+width_curve = SubResource("Curve_xhjvg")
+gradient = SubResource("Gradient_xhjvg")
+script = ExtResource("2_xhjvg")
+MAX_LENGTH = 30
 
 [node name="aura" type="GPUParticles2D" parent="."]
 emitting = false
@@ -244,7 +306,7 @@ shape = SubResource("RectangleShape2D_lm80i")
 
 [node name="halo" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(0, -33)
+position = Vector2(-10, -34)
 scale = Vector2(5, 5)
 texture = ExtResource("3_2sk4p")
 region_enabled = true
@@ -252,7 +314,7 @@ region_rect = Rect2(105, 104, 14, 13)
 
 [node name="wing1" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(-10, -5)
+position = Vector2(-15, 3)
 scale = Vector2(5, 5)
 texture = ExtResource("3_2sk4p")
 offset = Vector2(-4, -1)
@@ -261,7 +323,7 @@ region_rect = Rect2(43, 107, 8, 6)
 
 [node name="wing2" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(10, -5)
+position = Vector2(5, 3)
 scale = Vector2(5, 5)
 texture = ExtResource("3_2sk4p")
 offset = Vector2(4, -1)
@@ -270,7 +332,7 @@ region_rect = Rect2(77, 107, 8, 6)
 
 [node name="sprite" type="AnimatedSprite2D" parent="Node2D"]
 texture_filter = 1
-position = Vector2(5, 8)
+position = Vector2(0, 8)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_glbka")
 autoplay = "default"
@@ -287,15 +349,6 @@ one_shot = true
 autostart = true
 
 [node name="pivot" type="Node2D" parent="."]
-
-[node name="dasher" type="GPUParticles2D" parent="pivot"]
-position = Vector2(172, -7)
-scale = Vector2(1, 0.480003)
-emitting = false
-texture = ExtResource("5_4n5qj")
-lifetime = 0.2
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_5xsh4")
 
 [node name="hud" type="CanvasLayer" parent="."]
 
@@ -335,5 +388,10 @@ theme_override_font_sizes/font_size = 30
 text = "-Dark Angel Edgegar-"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ikfqe")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
