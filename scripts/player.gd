@@ -20,6 +20,7 @@ var camerashake : int = 0
 var hitcombo : int = 0
 
 var parryframes : int = 0
+var iframes : int = 0
 
 func _ready() -> void:
 	hp = 5
@@ -34,6 +35,7 @@ func _process(delta: float) -> void:
 	$hud/hp.value = hp
 	
 	camerashake -= 1
+	iframes -= 1
 	camerashake = clamp(camerashake,0,20)
 	parryframes -= 1
 	parryframes = clamp(parryframes,0,60)
@@ -160,20 +162,23 @@ func spawnparry(pos):
 	b.position = pos
 
 func takedamage():
-	spawnparry(global_position)
-	if parryframes < 1:
-		camerashake += 20
-		$parry.play()
-		hp -= 1
-		var b = preload("res://scenes/hitsound.tscn").instantiate()
-		get_tree().current_scene.add_child(b)
-	else:
-		
-		spawncircles()
-		hp += 5
-		hp = clamp(hp,0,5)
-		parryframes = 2
-		attackcooldown = 0
+	if iframes < 1:
+		spawnparry(global_position)
+		if parryframes < 1:
+			camerashake += 20
+			$parry.play()
+			hp -= 1
+			var b = preload("res://scenes/hitsound.tscn").instantiate()
+			get_tree().current_scene.add_child(b)
+			iframes = 10
+		else:
+			
+			spawncircles()
+			hp += 5
+			hp = clamp(hp,0,5)
+			parryframes = 2
+			attackcooldown = 0
+			iframes = 20
 
 func spawncircles():
 	var b = preload("res://scenes/counter.tscn").instantiate()

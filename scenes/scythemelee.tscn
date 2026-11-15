@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://c15w3sc7odq2g"]
+[gd_scene load_steps=15 format=3 uid="uid://c15w3sc7odq2g"]
 
 [ext_resource type="Script" uid="uid://bv56v4p4s6adc" path="res://scripts/scythemelee.gd" id="1_40efm"]
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="2_c853l"]
 [ext_resource type="Texture2D" uid="uid://dryx4lu64cpfl" path="res://assets/burst hit-2.svg" id="3_eab5m"]
 [ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="4_3ij8b"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="5_c853l"]
 
 [sub_resource type="Gradient" id="Gradient_lbqtu"]
 offsets = PackedFloat32Array(0, 0.402482, 0.769504, 1)
@@ -48,6 +49,9 @@ scale_min = 0.05
 scale_max = 0.05
 color = Color(0.796078, 0, 1, 1)
 color_ramp = SubResource("GradientTexture1D_lbqtu")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eab5m"]
+radius = 119.151
 
 [node name="scythe" type="CharacterBody2D"]
 collision_layer = 8
@@ -126,3 +130,9 @@ explosiveness = 1.0
 fixed_fps = 60
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_cncwm")
+
+[node name="fabababa" parent="." instance=ExtResource("5_c853l")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_eab5m")
+disabled = true

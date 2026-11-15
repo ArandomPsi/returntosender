@@ -40,6 +40,8 @@ func _process(delta: float) -> void:
 	
 	move_and_slide()
 	velocity *= 0.9
+	
+	$fabababa/CollisionShape2D.disabled = not $pivot/dasher.emitting
 
 func damage(amount):
 	hp -= amount

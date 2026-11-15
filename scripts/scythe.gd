@@ -15,6 +15,7 @@ func _ready() -> void:
 	await tween.finished
 	spinning = true
 	look_at(global.playerpos)
+	$fabababa/CollisionShape2D.disabled = false
 	$Sprite2D/spinny.emitting = true
 	$Sprite2D/trail.visible = true
 

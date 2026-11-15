@@ -24,7 +24,7 @@ gravity = Vector3(0, 0, 0)
 color_ramp = SubResource("GradientTexture1D_glbka")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ec0a7"]
-size = Vector2(424, 74.9996)
+size = Vector2(1196, 175.002)
 
 [node name="dasher" type="GPUParticles2D"]
 position = Vector2(9.53674e-07, -7)
@@ -41,5 +41,5 @@ script = ExtResource("2_qowlg")
 [node name="fabababa" parent="." instance=ExtResource("3_dh24l")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
-position = Vector2(48, 4.72937e-11)
+position = Vector2(-87, 1.34605e-10)
 shape = SubResource("RectangleShape2D_ec0a7")

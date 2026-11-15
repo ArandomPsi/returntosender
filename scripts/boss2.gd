@@ -84,7 +84,7 @@ func goaboveplayer():
 	tween.parallel().tween_property(self,"position:y",10,0.5).set_trans(Tween.TRANS_CUBIC)
 
 func dive():
-	velocity.y = 3000
+	velocity.y = 4000
 	await $Area2D.body_entered
 	var b = preload("res://scenes/burst.tscn").instantiate()
 	get_tree().current_scene.add_child(b)

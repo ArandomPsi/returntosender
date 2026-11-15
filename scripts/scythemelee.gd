@@ -19,6 +19,7 @@ func _ready() -> void:
 	tween2.tween_property($Sprite2D,"rotation",2*TAU * $Sprite2D.scale.x/5,0.8).set_trans(Tween.TRANS_CUBIC)
 	spinning = true
 	look_at(global.playerpos)
+	$fabababa/CollisionShape2D.disabled = false
 	$Sprite2D/spinny.emitting = true
 	$Sprite2D/trail.visible = true
 	await tween2.finished

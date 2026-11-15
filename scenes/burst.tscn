@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bkt8125bll35g"]
+[gd_scene load_steps=9 format=3 uid="uid://bkt8125bll35g"]
 
 [ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="1_o0sum"]
 [ext_resource type="Script" uid="uid://cowxbedlgdqg3" path="res://shaders/par.gd" id="2_slv0k"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="3_slv0k"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nwpkq"]
 blend_mode = 1
@@ -27,6 +28,9 @@ scale_max = 0.2
 color = Color(1, 0.95, 0, 1)
 color_ramp = SubResource("GradientTexture1D_vk0vg")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nwpkq"]
+radius = 80.0562
+
 [node name="burst" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_nwpkq")
 emitting = false
@@ -36,3 +40,8 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_tgix8")
 script = ExtResource("2_slv0k")
+
+[node name="fabababa" parent="." instance=ExtResource("3_slv0k")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_nwpkq")

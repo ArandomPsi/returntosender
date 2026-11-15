@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://c5quog3a17pyv"]
+[gd_scene load_steps=45 format=3 uid="uid://c5quog3a17pyv"]
 
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_gu4qg"]
 [ext_resource type="Script" uid="uid://b77ec0rb5kc18" path="res://scripts/boss_1.gd" id="1_vwre8"]
@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://doxbcymu3t062" path="res://assets/roaring-knight-roar.mp3" id="7_unxc3"]
 [ext_resource type="AudioStream" uid="uid://qdsno05webib" path="res://assets/roaring-knight-swoon-deltarune.mp3" id="8_5xsh4"]
 [ext_resource type="Texture2D" uid="uid://wvjjy0nf5u5g" path="res://misceffects/burst hit-3.svg" id="8_glbka"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="10_2tpq1"]
 
 [sub_resource type="Gradient" id="Gradient_qiwaa"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -476,6 +477,9 @@ scale_max = 0.4
 color = Color(1, 0, 0.583333, 1)
 color_ramp = SubResource("GradientTexture1D_0hsuw")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_3b75m"]
+radius = 75.06
+
 [node name="boss1" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_vwre8")
@@ -598,5 +602,11 @@ amount = 30
 texture = SubResource("GradientTexture2D_5xsh4")
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_0hsuw")
+
+[node name="fabababa" parent="." instance=ExtResource("10_2tpq1")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_3b75m")
+disabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
