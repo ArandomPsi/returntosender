@@ -1,0 +1,174 @@
+[gd_scene load_steps=21 format=3 uid="uid://cg5l3088p677o"]
+
+[ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_mj0en"]
+[ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="1_mm3c4"]
+[ext_resource type="PackedScene" uid="uid://dedf2qg1ey8xq" path="res://scenes/boss2.tscn" id="2_mm3c4"]
+[ext_resource type="Texture2D" uid="uid://dkv7oh64jvdsb" path="res://assets/divinebg.svg" id="2_y7k2t"]
+[ext_resource type="Texture2D" uid="uid://n0trtnv5w672" path="res://assets/grounds.png" id="3_71uog"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mm3c4"]
+frequency = 0.0138
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y7k2t"]
+seamless = true
+noise = SubResource("FastNoiseLite_mm3c4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_71uog"]
+frequency = 0.0046
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0oude"]
+seamless = true
+noise = SubResource("FastNoiseLite_71uog")
+
+[sub_resource type="Gradient" id="Gradient_1d4sh"]
+offsets = PackedFloat32Array(0.572192, 0.794118)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_632fj"]
+gradient = SubResource("Gradient_1d4sh")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjny7"]
+shader = ExtResource("1_mm3c4")
+shader_parameter/pixelation = Vector2(128, 128)
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_y7k2t")
+shader_parameter/scroll_speed1 = Vector2(0.02, 0.007)
+shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_0oude")
+shader_parameter/scroll_speed2 = Vector2(-0.015, -0.004)
+shader_parameter/center_pos = Vector2(0.5, 0)
+shader_parameter/position_impact = 0.0
+shader_parameter/color_gardient = SubResource("GradientTexture1D_632fj")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y7k2t"]
+frequency = 0.0138
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_71uog"]
+seamless = true
+noise = SubResource("FastNoiseLite_y7k2t")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0oude"]
+frequency = 0.0046
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1d4sh"]
+seamless = true
+noise = SubResource("FastNoiseLite_0oude")
+
+[sub_resource type="Gradient" id="Gradient_632fj"]
+offsets = PackedFloat32Array(0.489305, 0.721925)
+colors = PackedColorArray(1, 0.761667, 0.45, 0, 0.68, 0.517933, 0.306, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rjny7"]
+gradient = SubResource("Gradient_632fj")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iabbl"]
+shader = ExtResource("1_mm3c4")
+shader_parameter/pixelation = Vector2(128, 128)
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_71uog")
+shader_parameter/scroll_speed1 = Vector2(0.02, 0.007)
+shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_1d4sh")
+shader_parameter/scroll_speed2 = Vector2(-0.015, -0.004)
+shader_parameter/center_pos = Vector2(0.5, 0)
+shader_parameter/position_impact = 0.73
+shader_parameter/color_gardient = SubResource("GradientTexture1D_rjny7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
+size = Vector2(1186, 20)
+
+[node name="lightdomain" type="Node2D"]
+
+[node name="bg" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="bg"]
+position = Vector2(607.75, 344)
+scale = Vector2(1.81837, 1.64069)
+texture = ExtResource("2_y7k2t")
+
+[node name="ColorRect2" type="ColorRect" parent="bg"]
+material = SubResource("ShaderMaterial_rjny7")
+offset_left = -325.0
+offset_top = -60.0
+offset_right = 1464.0
+offset_bottom = 698.0
+
+[node name="ColorRect" type="ColorRect" parent="bg"]
+material = SubResource("ShaderMaterial_iabbl")
+offset_left = -71.0
+offset_top = -60.0
+offset_right = 1210.0
+offset_bottom = 698.0
+
+[node name="ground" type="Node2D" parent="bg"]
+
+[node name="ground1" type="Sprite2D" parent="bg/ground"]
+texture_filter = 1
+position = Vector2(240, 685)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+region_enabled = true
+region_rect = Rect2(32, 3, 64, 30)
+
+[node name="ground2" type="Sprite2D" parent="bg/ground"]
+texture_filter = 1
+position = Vector2(560, 685)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+region_enabled = true
+region_rect = Rect2(32, 3, 64, 30)
+
+[node name="ground3" type="Sprite2D" parent="bg/ground"]
+texture_filter = 1
+position = Vector2(880, 685)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+region_enabled = true
+region_rect = Rect2(32, 3, 64, 30)
+
+[node name="ground4" type="Sprite2D" parent="bg/ground"]
+texture_filter = 1
+position = Vector2(1062, 685)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+region_enabled = true
+region_rect = Rect2(32, 3, 21, 30)
+
+[node name="Sprite2D2" type="Sprite2D" parent="bg"]
+texture_filter = 1
+position = Vector2(40, 730)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 48)
+
+[node name="Sprite2D3" type="Sprite2D" parent="bg"]
+texture_filter = 1
+position = Vector2(1112, 730)
+scale = Vector2(5, 5)
+texture = ExtResource("3_71uog")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 48)
+
+[node name="player" parent="." instance=ExtResource("1_mj0en")]
+position = Vector2(479, 428)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(583, 0)
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(583, 626)
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-2, 284)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1153, 284)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="boss2" parent="." instance=ExtResource("2_mm3c4")]
+position = Vector2(407, 341)

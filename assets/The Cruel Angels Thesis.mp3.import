@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bndlx0p5vyb7c"
+path="res://.godot/imported/The Cruel Angels Thesis.mp3-b5201c4282fa00fb9335b648264fa695.mp3str"
+
+[deps]
+
+source_file="res://assets/The Cruel Angels Thesis.mp3"
+dest_files=["res://.godot/imported/The Cruel Angels Thesis.mp3-b5201c4282fa00fb9335b648264fa695.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

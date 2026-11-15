@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxqeh0adc3g4a"]
+
+[ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_3mwew"]
+[ext_resource type="Script" uid="uid://b4bnyd43442i6" path="res://scripts/devasword.gd" id="1_jqgul"]
+[ext_resource type="Texture2D" uid="uid://dri7milfqm7r5" path="res://assets/Flame.png" id="2_d5ncd"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_d5ncd"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_1lceh"]
+offsets = PackedFloat32Array(0, 0.177143, 0.56, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d5ncd"]
+gradient = SubResource("Gradient_1lceh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1lceh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(50, 1, 1)
+angle_min = -720.0
+angle_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.3
+color = Color(1, 0.966667, 0, 1)
+color_ramp = SubResource("GradientTexture1D_d5ncd")
+
+[node name="devasword" type="Node2D"]
+script = ExtResource("1_jqgul")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_d5ncd")
+position = Vector2(13, 0)
+scale = Vector2(0.519996, 0.599999)
+amount = 20
+texture = ExtResource("2_d5ncd")
+lifetime = 0.3
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_1lceh")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+rotation = 1.5708
+scale = Vector2(5, 5)
+texture = ExtResource("1_3mwew")
+offset = Vector2(0, -2)
+region_enabled = true
+region_rect = Rect2(78, 8, 3, 10)

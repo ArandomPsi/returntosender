@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ybx3yqrx4thj"]
+[gd_scene load_steps=28 format=3 uid="uid://ybx3yqrx4thj"]
 
 [ext_resource type="Texture2D" uid="uid://cu1weqkg427pf" path="res://assets/back-2.svg" id="1_01cev"]
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_te0tx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="2_8jxia"]
 [ext_resource type="Texture2D" uid="uid://fgfen188b6hv" path="res://icon.svg" id="3_es6ay"]
 [ext_resource type="Texture2D" uid="uid://dt7sxtvsvh157" path="res://assets/spark-3.svg" id="5_es6ay"]
+[ext_resource type="AudioStream" uid="uid://dnucn4grs16hp" path="res://assets/IncanationAndRitual.mp3" id="8_24s7u"]
 
 [sub_resource type="Gradient" id="Gradient_24s7u"]
 offsets = PackedFloat32Array(0, 0.347594)
@@ -46,14 +47,14 @@ shader_parameter/haloColor = SubResource("GradientTexture1D_pi41r")
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1b1df"]
 frequency = 0.0138
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1wxya"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_24s7u"]
 seamless = true
 noise = SubResource("FastNoiseLite_1b1df")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_es6ay"]
 frequency = 0.0046
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_24s7u"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pi41r"]
 seamless = true
 noise = SubResource("FastNoiseLite_es6ay")
 
@@ -67,9 +68,9 @@ gradient = SubResource("Gradient_pi41r")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ob3pf"]
 shader = ExtResource("2_8jxia")
 shader_parameter/pixelation = Vector2(128, 128)
-shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_1wxya")
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_24s7u")
 shader_parameter/scroll_speed1 = Vector2(0.02, 0.007)
-shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_24s7u")
+shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_pi41r")
 shader_parameter/scroll_speed2 = Vector2(-0.015, -0.004)
 shader_parameter/center_pos = Vector2(0.5, 0)
 shader_parameter/position_impact = 0.87
@@ -155,3 +156,7 @@ shape = SubResource("RectangleShape2D_kwcxs")
 
 [node name="boss1" parent="." instance=ExtResource("2_01cev")]
 position = Vector2(589, 579)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_24s7u")
+autoplay = true

@@ -28,14 +28,14 @@ func _process(delta: float) -> void:
 	if hitstun >= 1:
 		hitstun -= 1
 	if not $AnimationPlayer.is_playing():
-		$AnimationPlayer.play("dash")
-		#if randi_range(1,3) == 1:
-			#$AnimationPlayer.play("lightbeam")
-		#else:
-			#if randi_range(1,2) == 1:
-				#$AnimationPlayer.play("scythetoss")
-			#else:
-				#$AnimationPlayer.play("scythemelee")
+		
+		if randi_range(1,2) == 1:
+			$AnimationPlayer.play("circlethingy")
+		else:
+			if randi_range(1,2) == 1:
+				$AnimationPlayer.play("dive")
+			else:
+				$AnimationPlayer.play("dash")
 	
 	if not nomove:
 		$pivot.look_at(targetpos)
@@ -84,6 +84,7 @@ func dive():
 	var b = preload("res://scenes/burst.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	b.position = position
+	global.player.camerashake += 15
 
 func spawnbeam():
 	var b = preload("res://scenes/dasher.tscn").instantiate()
@@ -93,3 +94,31 @@ func spawnbeam():
 func slash():
 	var b = preload("res://scenes/swordcircle.tscn").instantiate()
 	$Node2D.add_child(b)
+	global.player.camerashake += 8
+
+func createswordcircle():
+	var playerpos : Vector2 = position
+	for i in range(10):
+		var angle = deg_to_rad(i * 36)
+		var offset = Vector2(cos(angle), sin(angle)) * 50 + Vector2(0,-25)
+		createswordonplayer(offset,playerpos)
+		
+		
+		
+
+func createswordonplayer(offset : Vector2,pos : Vector2):
+	var b = preload("res://scenes/devasword.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = pos + offset
+
+
+func cratecircleonplayer():
+	var playerpos : Vector2 = global.playerpos
+	for i in range(20):
+		var angle = deg_to_rad(i * 36)
+		var offset = Vector2(cos(angle), sin(angle)) * (200 + (i*10)) + Vector2(0,-100 - (i*5))
+		createswordonplayer(offset,playerpos)
+		
+		for e in range(10):
+			await get_tree().process_frame
+		
