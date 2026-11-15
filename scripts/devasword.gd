@@ -22,3 +22,6 @@ func _process(delta: float) -> void:
 			rotation = lerp_angle(rotation,v,0.1)
 		2:
 			position += transform.x * 1200 * delta
+
+func reflect():
+	rotation += PI 

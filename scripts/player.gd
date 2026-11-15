@@ -42,7 +42,7 @@ func _process(delta: float) -> void:
 	else:
 		$hud/combometer.modulate.a = lerp($hud/combometer.modulate.a,1.0,0.1)
 		$hud/combometer.text = str(hitcombo) + "x"
-	
+	$hud/combometer.scale = lerp($hud/combometer.scale,Vector2(1,1),0.1)
 	
 
 func attackcontrols():
@@ -149,3 +149,7 @@ func spawnparry(pos):
 	b.position = pos
 func takedamage():
 	camerashake += 20
+
+func addcombo():
+	hitcombo += 1
+	$hud/combometer.scale = Vector2(1,1) * 2

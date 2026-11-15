@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxqeh0adc3g4a"]
+[gd_scene load_steps=9 format=3 uid="uid://dxqeh0adc3g4a"]
 
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="1_3mwew"]
 [ext_resource type="Script" uid="uid://b4bnyd43442i6" path="res://scripts/devasword.gd" id="1_jqgul"]
@@ -26,7 +26,12 @@ scale_max = 0.3
 color = Color(1, 0.966667, 0, 1)
 color_ramp = SubResource("GradientTexture1D_d5ncd")
 
-[node name="devasword" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5ncd"]
+size = Vector2(74, 20)
+
+[node name="devasword" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_jqgul")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
@@ -48,3 +53,7 @@ texture = ExtResource("1_3mwew")
 offset = Vector2(0, -2)
 region_enabled = true
 region_rect = Rect2(78, 8, 3, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_d5ncd")
