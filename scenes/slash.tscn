@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://corns0gkx6552"]
+[gd_scene load_steps=11 format=3 uid="uid://corns0gkx6552"]
 
 [ext_resource type="Script" uid="uid://tv72kjub84k0" path="res://scripts/slash.gd" id="1_jrt4b"]
 [ext_resource type="Texture2D" uid="uid://c3jawn18nnya6" path="res://assets/heavyslash1.svg" id="2_pim1l"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ehfyn5syagyb" path="res://assets/heavyslash3.svg" id="4_0fel2"]
 [ext_resource type="Texture2D" uid="uid://bc0gx8ht508wp" path="res://assets/heavyslash4.svg" id="5_q08yp"]
 [ext_resource type="Script" uid="uid://pxxwa45lnr0d" path="res://scripts/deflector.gd" id="6_pim1l"]
+[ext_resource type="AudioStream" uid="uid://bac5ufp3urt23" path="res://shaders/hornet_hunter_needleart_slash_1.wav" id="7_0fel2"]
+[ext_resource type="Script" uid="uid://csueuuewtia4i" path="res://scenes/hi.gd" id="8_q08yp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lrr4d"]
 animations = [{
@@ -52,6 +54,11 @@ script = ExtResource("6_pim1l")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_gu08y")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0fel2")
+autoplay = true
+script = ExtResource("8_q08yp")
 
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
