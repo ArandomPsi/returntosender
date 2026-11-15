@@ -180,6 +180,23 @@ preprocess = 3.0
 trail_lifetime = 0.8
 process_material = SubResource("ParticleProcessMaterial_s6eg2")
 
+[node name="Label" type="Label" parent="Node2D"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 400.0
+offset_top = 95.0
+offset_right = 726.0
+offset_bottom = 118.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.576471)
+theme_override_fonts/font = ExtResource("8_441x5")
+text = "Arrow Keys To Move. Space to reflect attacks.
+
+The more you bounce, the more damage you do"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="player" parent="." instance=ExtResource("1_qssp3")]
 position = Vector2(171, 560)
 
