@@ -122,3 +122,7 @@ func cratecircleonplayer():
 		for e in range(10):
 			await get_tree().process_frame
 		
+
+
+func _on_audio_stream_player_finished() -> void:
+	$AudioStreamPlayer2.play()
