@@ -10,6 +10,8 @@ var hitstun : int = 0
 
 var t : float
 
+var omiowaoshinderu : bool = false
+
 func _ready() -> void:
 	$AnimationPlayer.play("intro")
 
@@ -46,7 +48,10 @@ func _process(delta: float) -> void:
 	velocity *= 0.95
 
 func damage(amount):
-	hp -= 1
+	hp -= amount
+	if hp < 1 and not omiowaoshinderu:
+		omiowaoshinderu = true
+		$AnimationPlayer.play("die")
 	hitstun = 8
 
 
@@ -85,6 +90,11 @@ func dive():
 	get_tree().current_scene.add_child(b)
 	b.position = position
 	global.player.camerashake += 15
+
+func diddyblud():
+	var b = preload("res://scenes/burst.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
+	b.position = position
 
 func spawnbeam():
 	var b = preload("res://scenes/dasher.tscn").instantiate()
@@ -126,3 +136,15 @@ func cratecircleonplayer():
 
 func _on_audio_stream_player_finished() -> void:
 	$AudioStreamPlayer2.play()
+
+func screenshakethingy():
+	for i in range(60):
+		global.player.camerashake = 20
+		await get_tree().process_frame
+
+func hub():
+	get_tree().change_scene_to_file("res://scenes/hub.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	nomove = false

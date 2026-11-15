@@ -8,6 +8,8 @@ var nomove : bool = false
 
 var hitstun : int = 0
 
+var omiowaoshinderu : bool = false
+
 func _ready() -> void:
 	$AnimationPlayer.play("intro")
 
@@ -18,11 +20,11 @@ func _process(delta: float) -> void:
 	
 		$Node2D.scale.x = -1
 	$hud/hp.value = hp
-	print(str(hp))
+	
 	
 	if hitstun >= 1:
 		hitstun -= 1
-	if not $AnimationPlayer.is_playing():
+	if not $AnimationPlayer.is_playing() and hp > 1:
 		if randi_range(1,3) == 1:
 			$AnimationPlayer.play("lightbeam")
 		else:
@@ -40,7 +42,10 @@ func _process(delta: float) -> void:
 	velocity *= 0.9
 
 func damage(amount):
-	hp -= 1
+	hp -= amount
+	if hp < 1 and not omiowaoshinderu:
+		omiowaoshinderu = true
+		$AnimationPlayer.play("die")
 	hitstun = 8
 
 func spawnscythetoss():
@@ -108,6 +113,10 @@ func togglemovement():
 	nomove = not nomove
 #random movement stuff
 
+func burst():
+	var c = preload("res://scenes/burst.tscn").instantiate()
+	get_tree().current_scene.add_child(c)
+	c.position = position
 func _on_timer_timeout() -> void:
 	targetpos = Vector2(randi_range(0,1152),randi_range(300,500))
 	$Timer.start(randf_range(2,4))
@@ -132,3 +141,11 @@ func scythething():
 	var b = preload("res://scenes/scythemelee.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	b.position = position
+
+func screenshakethingy():
+	for i in range(60):
+		global.player.camerashake = 20
+		await get_tree().process_frame
+
+func hub():
+	get_tree().change_scene_to_file("res://scenes/hub.tscn")

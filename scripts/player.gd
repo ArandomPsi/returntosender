@@ -22,6 +22,8 @@ var hitcombo : int = 0
 func _ready() -> void:
 	hp = 20
 	global.player = self
+	var tween = create_tween()
+	tween.tween_property($hud/ColorRect,"color:a",0.0,0.8).set_trans(Tween.TRANS_CUBIC)
 
 func _process(delta: float) -> void:
 	global.playerpos = position
@@ -77,7 +79,7 @@ func updatepos(delta):
 
 func updatevisuals():
 	normalanimations()
-	$Camera2D.offset = Vector2(randf_range(-1,1),randf_range(-1,1)) * camerashake/1.5
+	$Camera2D.offset = Vector2(randf_range(-1,1),randf_range(-1,1)) * camerashake/1
 
 func normalanimations():
 	if movedir > 0:
