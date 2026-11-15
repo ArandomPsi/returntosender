@@ -174,11 +174,13 @@ func takedamage():
 		else:
 			
 			spawncircles()
-			hp += 5
+			hp += 1
 			hp = clamp(hp,0,5)
 			parryframes = 2
 			attackcooldown = 0
 			iframes = 20
+		if hp < 1:
+			$AnimationPlayer.play("die")
 
 func spawncircles():
 	var b = preload("res://scenes/counter.tscn").instantiate()
@@ -191,3 +193,6 @@ func addcombo():
 
 func challenge():
 	$AnimationPlayer.play("challenge")
+
+func hub():
+	get_tree().change_scene_to_file("res://scenes/hub.tscn")
