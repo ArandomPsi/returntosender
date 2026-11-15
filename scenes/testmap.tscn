@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://bc2h0fw1jkrkw"]
+[gd_scene load_steps=3 format=3 uid="uid://bc2h0fw1jkrkw"]
 
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_kwcxs"]
-[ext_resource type="PackedScene" uid="uid://dedf2qg1ey8xq" path="res://scenes/boss2.tscn" id="2_yowm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
 size = Vector2(1186, 20)
@@ -9,7 +8,7 @@ size = Vector2(1186, 20)
 [node name="testmap" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_kwcxs")]
-position = Vector2(479, 428)
+position = Vector2(673, 430)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -30,6 +29,3 @@ shape = SubResource("RectangleShape2D_kwcxs")
 position = Vector2(1153, 284)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_kwcxs")
-
-[node name="boss2" parent="." instance=ExtResource("2_yowm7")]
-position = Vector2(407, 341)
