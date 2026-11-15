@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdviunspcrpsd"]
+
+[ext_resource type="Script" uid="uid://cqddjuhov2s2w" path="res://scripts/hitdetector.gd" id="1_fm773"]
+
+[node name="fabababa" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_fm773")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmagugo1dt6ek"]
+[gd_scene load_steps=12 format=3 uid="uid://cmagugo1dt6ek"]
 
 [ext_resource type="Texture2D" uid="uid://dyyofscx0dton" path="res://assets/godslayer.png" id="1_8afob"]
 [ext_resource type="Script" uid="uid://cjc648jo20bgh" path="res://scripts/player.gd" id="1_dovo2"]
+[ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_75vfm"]
 atlas = ExtResource("1_8afob")
@@ -103,6 +104,16 @@ region_enabled = true
 region_rect = Rect2(110, 15, 4, 3)
 
 [node name="hud" type="CanvasLayer" parent="."]
+
+[node name="combometer" type="Label" parent="hud"]
+texture_filter = 1
+offset_left = 18.0
+offset_top = 585.0
+offset_right = 84.0
+offset_bottom = 633.0
+theme_override_fonts/font = ExtResource("3_qhqgy")
+theme_override_font_sizes/font_size = 48
+text = "10x"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0

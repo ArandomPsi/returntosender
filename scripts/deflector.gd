@@ -7,7 +7,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.reflect()
 	else:
 		body.velocity += global_transform.x * 800
-		body.hp -= 1
+		body.hp -= 1 + get_parent().get_parent().hitcombo/2
+		
 	
 	global.player.velocity = global_transform.x * -600
 	global.player.camerashake += 12

@@ -17,6 +17,8 @@ var hp : int = 20
 
 var camerashake : int = 0
 
+var hitcombo : int = 0
+
 func _ready() -> void:
 	hp = 20
 	global.player = self
@@ -34,6 +36,11 @@ func _process(delta: float) -> void:
 	updatevisuals()
 	createtrail(0.1)
 	
+	if is_on_floor():
+		hitcombo = 0
+		$hud/combometer.visible = false
+	else:
+		$hud/combometer.visible = true
 	
 	
 
@@ -139,3 +146,5 @@ func spawnparry(pos):
 	var b = preload("res://scenes/hitfx.tscn").instantiate()
 	get_tree().current_scene.add_child(b)
 	b.position = pos
+func takedamage():
+	camerashake += 20
