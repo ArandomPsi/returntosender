@@ -174,7 +174,8 @@ func takedamage():
 		else:
 			
 			spawncircles()
-			hp += 1
+			if randi_range(1,5) == 1:
+				hp += 1
 			hp = clamp(hp,0,5)
 			parryframes = 2
 			attackcooldown = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://ybx3yqrx4thj"]
+[gd_scene load_steps=29 format=3 uid="uid://ybx3yqrx4thj"]
 
 [ext_resource type="Texture2D" uid="uid://cu1weqkg427pf" path="res://scripts/back-2.svg" id="1_01cev"]
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_te0tx"]
@@ -101,6 +101,16 @@ color_ramp = SubResource("GradientTexture1D_8mb24")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
 size = Vector2(1186, 20)
 
+[sub_resource type="Environment" id="Environment_24s7u"]
+background_mode = 3
+glow_enabled = true
+glow_levels/1 = 0.86
+glow_levels/7 = 1.32
+glow_intensity = 1.3
+glow_strength = 0.73
+glow_bloom = 0.29
+glow_blend_mode = 1
+
 [node name="testmap2" type="Node2D"]
 
 [node name="bg" type="Node2D" parent="."]
@@ -160,3 +170,6 @@ position = Vector2(589, 579)
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_24s7u")
 autoplay = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_24s7u")

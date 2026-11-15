@@ -4,7 +4,7 @@ extends Sprite2D
 func _process(delta: float) -> void:
 	
 	if $Area2D.has_overlapping_bodies():
-		if Input.is_action_just_pressed("down"):
+		if Input.is_action_just_pressed("down") or Input.is_action_just_pressed("up"):
 			global.player.challenge()
 			var tween = create_tween()
 			tween.tween_property(fade,"color:a",1.0,1).set_delay(1)
