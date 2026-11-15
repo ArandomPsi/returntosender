@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dheeyyryy7ihh"]
+[gd_scene load_steps=21 format=3 uid="uid://dheeyyryy7ihh"]
 
 [ext_resource type="Texture2D" uid="uid://cu1weqkg427pf" path="res://scripts/back-2.svg" id="1_d1od2"]
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_qssp3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://drv1bg8x0p787" path="res://scripts/pillars.gd" id="7_3wyi3"]
 [ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="8_441x5"]
 [ext_resource type="Texture2D" uid="uid://0xg65sdnskc4" path="res://assets/arrow.png" id="9_2hkft"]
+[ext_resource type="AudioStream" uid="uid://6tq7t7kf8x8s" path="res://assets/Snowdin.mp3" id="10_4oyfp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7wvbm"]
 shader = ExtResource("2_w6xti")
@@ -309,3 +310,10 @@ offset_top = -44.0
 offset_right = 1226.0
 offset_bottom = 679.0
 color = Color(1, 1, 1, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_4oyfp")
+pitch_scale = 0.8
+autoplay = true
+mix_target = 1
+bus = &"reverb"

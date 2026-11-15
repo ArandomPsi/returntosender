@@ -196,3 +196,6 @@ func challenge():
 
 func hub():
 	get_tree().change_scene_to_file("res://scenes/hub.tscn")
+
+func shakea():
+	camerashake += 20
