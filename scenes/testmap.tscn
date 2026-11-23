@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bc2h0fw1jkrkw"]
+[gd_scene load_steps=4 format=3 uid="uid://bc2h0fw1jkrkw"]
 
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_kwcxs"]
+[ext_resource type="PackedScene" uid="uid://f64skfhca8q1" path="res://scenes/boss3.tscn" id="2_yowm7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
 size = Vector2(1186, 20)
@@ -29,3 +30,6 @@ shape = SubResource("RectangleShape2D_kwcxs")
 position = Vector2(1153, 284)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_kwcxs")
+
+[node name="boss3" parent="." instance=ExtResource("2_yowm7")]
+position = Vector2(116, 102)

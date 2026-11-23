@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://vhsxe3lq26mt"]
 
-[ext_resource type="AudioStream" uid="uid://dp5t2fsmrt1j3" path="res://assets/parry-ultrakill.mp3" id="1_gma41"]
+[ext_resource type="AudioStream" uid="uid://domdroaiabylp" path="res://assets/hollow_knight_bungling_bounce_1.wav" id="1_gma41"]
 [ext_resource type="Script" uid="uid://b5tuw83rif5pv" path="res://scripts/hitsound.gd" id="2_qjyid"]
 
 [node name="hitsound" type="AudioStreamPlayer"]
 stream = ExtResource("1_gma41")
-volume_db = 5.0
-pitch_scale = 2.0
+pitch_scale = 1.5
 autoplay = true
 script = ExtResource("2_qjyid")
 

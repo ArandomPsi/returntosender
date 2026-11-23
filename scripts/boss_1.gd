@@ -45,9 +45,12 @@ func _process(delta: float) -> void:
 
 func damage(amount):
 	hp -= amount
+	var b = preload("res://scenes/hitsound.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
 	if hp < 1 and not omiowaoshinderu:
 		omiowaoshinderu = true
 		$AnimationPlayer.play("die")
+		
 	hitstun = 8
 
 func spawnscythetoss():

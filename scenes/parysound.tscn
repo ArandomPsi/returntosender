@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b124js58l0oct"]
+
+[ext_resource type="AudioStream" uid="uid://dp5t2fsmrt1j3" path="res://assets/parry-ultrakill.mp3" id="1_oyqv3"]
+[ext_resource type="Script" uid="uid://b5tuw83rif5pv" path="res://scripts/hitsound.gd" id="2_f68tb"]
+
+[node name="hitsound" type="AudioStreamPlayer"]
+stream = ExtResource("1_oyqv3")
+pitch_scale = 2.0
+autoplay = true
+script = ExtResource("2_f68tb")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

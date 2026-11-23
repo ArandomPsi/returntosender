@@ -22,6 +22,8 @@ var hitcombo : int = 0
 var parryframes : int = 0
 var iframes : int = 0
 
+var flash : float = 0
+
 func _ready() -> void:
 	hp = 5
 	global.player = self
@@ -31,9 +33,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	global.playerpos = position
 	attackcooldown -= 1
-	
+	$hud/ColorRect2.color.a = flash
 	$hud/hp.value = hp
 	
+	flash = lerpf(flash,0.0,0.2)
 	camerashake -= 1
 	iframes -= 1
 	camerashake = clamp(camerashake,0,20)
@@ -164,15 +167,16 @@ func spawnparry(pos):
 func takedamage():
 	if iframes < 1:
 		spawnparry(global_position)
-		if parryframes < 1:
+		flash = 0.5
+		if parryframes < 1: 
 			camerashake += 20
 			$parry.play()
 			hp -= 1
-			var b = preload("res://scenes/hitsound.tscn").instantiate()
+			var b = preload("res://scenes/hitsound2.tscn").instantiate()
 			get_tree().current_scene.add_child(b)
 			iframes = 10
 		else:
-			
+			flash = 1
 			spawncircles()
 			if randi_range(1,5) == 1:
 				hp += 1
@@ -194,6 +198,8 @@ func addcombo():
 
 func challenge():
 	$AnimationPlayer.play("challenge")
+	velocity *= 0
+	movedir *= 0
 
 func hub():
 	get_tree().change_scene_to_file("res://scenes/hub.tscn")

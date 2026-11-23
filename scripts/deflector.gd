@@ -3,11 +3,11 @@ extends Area2D
 
 
 func _on_body_entered(body: Node2D) -> void:
-	
+	var b = load("res://scenes/parysound.tscn").instantiate()
+	get_tree().current_scene.add_child(b)
 	if body.has_method("reflect"):
 		body.reflect()
-		var b = load("res://scenes/hitsound.tscn").instantiate()
-		get_tree().current_scene.add_child(b)
+		
 		
 	else:
 		body.velocity += global_transform.x * 800
