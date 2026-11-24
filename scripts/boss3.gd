@@ -24,18 +24,18 @@ func _process(delta: float) -> void:
 		$Node2D.scale.x = -1
 	$hud/hp.value = hp
 	
-	$Node2D/wing1.rotation_degrees = sin(t * 5) * 30
+	$Node2D/wing1.rotation_degrees = sin(t * 5) * 38
 	$Node2D/wing2.rotation_degrees = -$Node2D/wing1.rotation_degrees
 	
 	if hitstun >= 1:
 		hitstun -= 1
 	if not $AnimationPlayer.is_playing():
 		
-		if randi_range(1,2) == 1:
-			$AnimationPlayer.play("dash")
+		if randi_range(1,5) == 1:
+			$AnimationPlayer.play("hyperbats")
 		else:
 			if randi_range(1,2) == 1:
-				$AnimationPlayer.play("dash")
+				$AnimationPlayer.play("combospinner")
 			else:
 				$AnimationPlayer.play("dash")
 	
@@ -86,6 +86,21 @@ func goaboveplayer():
 	var tween = create_tween()
 	tween.tween_property(self,"position:x",global.playerpos.x,0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(self,"position:y",10,0.5).set_trans(Tween.TRANS_CUBIC)
+
+func dashtoplayer():
+	velocity *= 0
+	targetpos = global.playerpos
+	$pivot.look_at(targetpos)
+	
+	var b = preload("res://scenes/mortisslash.tscn").instantiate()
+	add_child(b)
+	b.look_at(targetpos)
+	
+	nomove = true
+	velocity = $pivot.transform.x * 2500
+	await get_tree().create_timer(0.3)
+	velocity *= 0.6
+	nomove = false
 
 func dive():
 	velocity.y = 4000
@@ -152,3 +167,17 @@ func hub():
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	nomove = false
+
+
+func createcombospinner():
+	var b = preload("res://scenes/combospinner.tscn").instantiate()
+	add_child(b)
+	#create the combo spinner offset thingy
+	$pivot.look_at(global.playerpos)
+	b.position += $pivot.transform.x * 100
+
+func hyperbats():
+	var b = load("res://scenes/hyperbats.tscn").instantiate()
+	get_parent().add_child(b)
+	b.position = position
+	b.look_at(global.playerpos)

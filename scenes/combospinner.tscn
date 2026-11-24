@@ -1,0 +1,85 @@
+[gd_scene load_steps=14 format=3 uid="uid://snpwkxetawl1"]
+
+[ext_resource type="Script" uid="uid://d4g6hsy4yhjwj" path="res://scripts/combospinner.gd" id="1_u2id8"]
+[ext_resource type="Texture2D" uid="uid://dryx4lu64cpfl" path="res://assets/burst hit-2.svg" id="2_hpt84"]
+[ext_resource type="Texture2D" uid="uid://nogbp04us4su" path="res://assets/circle-3.svg" id="3_c3wqb"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="4_mkpgs"]
+
+[sub_resource type="Gradient" id="Gradient_idp3c"]
+offsets = PackedFloat32Array(0, 0.385714, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jk4xh"]
+gradient = SubResource("Gradient_idp3c")
+
+[sub_resource type="Curve" id="Curve_u2id8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.336634, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_hpt84"]
+curve = SubResource("Curve_u2id8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wimj2"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = 581.69
+angular_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 1.5
+scale_curve = SubResource("CurveTexture_hpt84")
+color = Color(0, 0.338333, 0.7, 1)
+color_ramp = SubResource("GradientTexture1D_jk4xh")
+hue_variation_min = -0.08
+hue_variation_max = -2.23517e-08
+
+[sub_resource type="Gradient" id="Gradient_8q5jv"]
+offsets = PackedFloat32Array(0, 0.385714, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kyrhe"]
+gradient = SubResource("Gradient_8q5jv")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_il53y"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = 581.69
+angular_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.45, 0.688333, 1, 1)
+color_ramp = SubResource("GradientTexture1D_kyrhe")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hob7x"]
+radius = 98.7168
+
+[node name="combospinner" type="Node2D"]
+script = ExtResource("1_u2id8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 30
+texture = ExtResource("2_hpt84")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_wimj2")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 5
+texture = ExtResource("3_c3wqb")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_il53y")
+
+[node name="fabababa" parent="." instance=ExtResource("4_mkpgs")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_hob7x")
+
+[connection signal="finished" from="GPUParticles2D" to="." method="_on_gpu_particles_2d_finished"]

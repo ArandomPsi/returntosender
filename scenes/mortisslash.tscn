@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cbyrvnse6nish"]
+
+[ext_resource type="Texture2D" uid="uid://l6msnam3oklf" path="res://assets/slashes-2.svg" id="1_3kfiw"]
+[ext_resource type="Script" uid="uid://dfhlwckyhvt63" path="res://scripts/mortisslash.gd" id="2_wy6ks"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="3_wy6ks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ujj3"]
+atlas = ExtResource("1_3kfiw")
+region = Rect2(0, 0, 213, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_116vg"]
+atlas = ExtResource("1_3kfiw")
+region = Rect2(213, 0, 213, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_360qa"]
+atlas = ExtResource("1_3kfiw")
+region = Rect2(426, 0, 213, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqrsb"]
+atlas = ExtResource("1_3kfiw")
+region = Rect2(639, 0, 213, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icim2"]
+atlas = ExtResource("1_3kfiw")
+region = Rect2(852, 0, 213, 105)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q3hw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3ujj3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_116vg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_360qa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqrsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icim2")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ujj3"]
+radius = 67.3635
+
+[node name="mortisslash" type="AnimatedSprite2D"]
+modulate = Color(0.5005, 0.19, 1, 1)
+position = Vector2(0, -1)
+scale = Vector2(1.53219, 1.3848)
+sprite_frames = SubResource("SpriteFrames_q3hw5")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+offset = Vector2(0, 20)
+flip_v = true
+script = ExtResource("2_wy6ks")
+
+[node name="fabababa" parent="." instance=ExtResource("3_wy6ks")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_3ujj3")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

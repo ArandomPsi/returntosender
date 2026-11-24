@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://dmce5wyy544lo"]
+
+[ext_resource type="Texture2D" uid="uid://cjgtohubicr48" path="res://assets/hyperbats.svg" id="1_7c5ul"]
+[ext_resource type="Script" uid="uid://b7riiewfx51q6" path="res://scripts/hyperbats.gd" id="1_oqvl7"]
+[ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="2_5yjwe"]
+
+[sub_resource type="Gradient" id="Gradient_5yjwe"]
+offsets = PackedFloat32Array(0, 0.211429, 0.417143, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_oqvl7"]
+gradient = SubResource("Gradient_5yjwe")
+
+[sub_resource type="Curve" id="Curve_een6d"]
+_data = [Vector2(0, 0.538251), 0.0, 0.0, 0, 0, Vector2(0.561881, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.237705), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_pb7od"]
+curve = SubResource("Curve_een6d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wsu86"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 69.7
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -720.0
+angular_velocity_max = 720.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.8
+scale_max = 0.8
+scale_curve = SubResource("CurveTexture_pb7od")
+color_ramp = SubResource("GradientTexture1D_oqvl7")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqvl7"]
+radius = 47.3814
+
+[node name="hyperbats" type="Node2D"]
+script = ExtResource("1_oqvl7")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 30
+texture = ExtResource("1_7c5ul")
+lifetime = 0.2
+fixed_fps = 60
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+process_material = SubResource("ParticleProcessMaterial_wsu86")
+
+[node name="fabababa" parent="." instance=ExtResource("2_5yjwe")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
+shape = SubResource("CircleShape2D_oqvl7")

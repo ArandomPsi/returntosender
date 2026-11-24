@@ -1,7 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://f64skfhca8q1"]
+[gd_scene load_steps=55 format=3 uid="uid://f64skfhca8q1"]
 
 [ext_resource type="Script" uid="uid://cjstio1d1r8x4" path="res://scripts/boss3.gd" id="1_u8nmc"]
 [ext_resource type="Script" uid="uid://cxsam56lmipfw" path="res://scripts/trail.gd" id="2_jn0fd"]
+[ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="4_rghjg"]
 [ext_resource type="Texture2D" uid="uid://dq4i0us8pxp14" path="res://assets/bosses.png" id="4_vihtk"]
 [ext_resource type="FontFile" uid="uid://dg5oqr02k0vkp" path="res://assets/PixelMillennium-1oBZ.ttf" id="5_x537r"]
 [ext_resource type="Texture2D" uid="uid://cemmq77kht7ya" path="res://assets/sparkle.svg" id="6_4re7g"]
@@ -38,6 +39,51 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Gradient" id="Gradient_rghjg"]
+offsets = PackedFloat32Array(0.00684932, 0.990868)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jn0fd"]
+gradient = SubResource("Gradient_rghjg")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jn0fd"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ku34v"]
+offsets = PackedFloat32Array(0.00857143, 0.208571, 0.48, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rghjg"]
+gradient = SubResource("Gradient_ku34v")
+
+[sub_resource type="Curve" id="Curve_x537r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.724044), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_jn0fd"]
+curve = SubResource("Curve_x537r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8p348"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.39
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 446.15
+initial_velocity_max = 446.15
+gravity = Vector3(0, 0, 0)
+scale_min = 0.08
+scale_max = 0.08
+scale_curve = SubResource("CurveTexture_jn0fd")
+color = Color(0.75, 0, 1, 1)
+color_ramp = SubResource("GradientTexture1D_rghjg")
 
 [sub_resource type="Animation" id="Animation_6wt1p"]
 length = 0.001
@@ -184,6 +230,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [-1.5708]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("hyperchargeaura:emitting")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_qkqg0"]
 resource_name = "circlethingy"
@@ -223,7 +281,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_lm80i"]
 resource_name = "dash"
-length = 0.55
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -231,14 +289,29 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.533333, 0.633333, 1.06667, 1.1, 1.2, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"togglemovement"
 }, {
 "args": [],
-"method": &"scythedash"
+"method": &"dashtoplayer"
+}, {
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"dashtoplayer"
+}, {
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"dashtoplayer"
 }, {
 "args": [],
 "method": &"togglemovement"
@@ -263,10 +336,10 @@ tracks/2/path = NodePath("Node2D/scythe:rotation")
 tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.333333, 0.4, 0.466667, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.333333, 0.4, 0.466667, 0.533333, 0.733333, 0.866666, 0.933333, 1, 1.06667, 1.1, 1.3, 1.43333, 1.5, 1.56667, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
+"values": [-1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_tjn6w"]
@@ -567,13 +640,122 @@ tracks/0/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_u8nmc"]
+resource_name = "combospinner"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.633333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"dashtoplayer"
+}, {
+"args": [],
+"method": &"createcombospinner"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/scythe:rotation")
+tracks/2/interp = 3
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.566667, 0.633333, 0.7, 0.766667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
+}
+
+[sub_resource type="Animation" id="Animation_rghjg"]
+resource_name = "hyperbats"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"values": [{
+"args": [],
+"method": &"togglemovement"
+}, {
+"args": [],
+"method": &"dashtoplayer"
+}, {
+"args": [],
+"method": &"hyperbats"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node2D/scythe:rotation")
+tracks/2/interp = 3
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5, 0.666667, 1.47652, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, 3.78771, 1.39574, 1.39574, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("hyperchargeaura:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.2, 1.63333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qrnk6"]
 _data = {
 &"RESET": SubResource("Animation_6wt1p"),
 &"circlethingy": SubResource("Animation_qkqg0"),
+&"combospinner": SubResource("Animation_u8nmc"),
 &"dash": SubResource("Animation_lm80i"),
 &"die": SubResource("Animation_tjn6w"),
 &"dive": SubResource("Animation_xhjvg"),
+&"hyperbats": SubResource("Animation_rghjg"),
 &"intro": SubResource("Animation_qrnk6"),
 &"lightbeam": SubResource("Animation_2ng8k"),
 &"scythemelee": SubResource("Animation_qiwaa"),
@@ -701,6 +883,20 @@ scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_jn0fd")
 autoplay = "default"
 
+[node name="PointLight2D" type="PointLight2D" parent="Node2D/sprite"]
+position = Vector2(-0.6, -1.6)
+scale = Vector2(0.10625, 0.10625)
+color = Color(0.216667, 1, 0, 1)
+energy = 1.67
+texture = SubResource("GradientTexture2D_jn0fd")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Node2D/sprite"]
+position = Vector2(1.4, -1.6)
+scale = Vector2(0.10625, 0.10625)
+color = Color(0.216667, 1, 0, 1)
+energy = 1.67
+texture = SubResource("GradientTexture2D_jn0fd")
+
 [node name="scythe" type="Sprite2D" parent="Node2D"]
 texture_filter = 1
 position = Vector2(-1.13687e-12, 16)
@@ -710,6 +906,23 @@ texture = ExtResource("4_vihtk")
 offset = Vector2(0.1, -6)
 region_enabled = true
 region_rect = Rect2(73, 130, 15, 18)
+
+[node name="PointLight2D3" type="PointLight2D" parent="Node2D/scythe"]
+position = Vector2(0.200035, -10.4)
+rotation = 1.5708
+scale = Vector2(0.139267, 0.139267)
+color = Color(0.216667, 1, 0, 1)
+energy = 1.67
+texture = SubResource("GradientTexture2D_jn0fd")
+
+[node name="hyperchargeaura" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jn0fd")
+position = Vector2(0, 35)
+emitting = false
+amount = 20
+texture = ExtResource("4_rghjg")
+lifetime = 0.4
+process_material = SubResource("ParticleProcessMaterial_8p348")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -761,7 +974,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_outline_size = 16
 theme_override_fonts/font = ExtResource("5_x537r")
 theme_override_font_sizes/font_size = 24
-text = "-Lightbringer Degar-"
+text = "-Lusterless Radience-"
 horizontal_alignment = 1
 vertical_alignment = 1
 

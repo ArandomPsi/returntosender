@@ -9,7 +9,7 @@
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_mm3c4"]
 frequency = 0.0138
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y7k2t"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_71uog"]
 seamless = true
 noise = SubResource("FastNoiseLite_mm3c4")
 
@@ -24,31 +24,31 @@ noise = SubResource("FastNoiseLite_71uog")
 offsets = PackedFloat32Array(0.572192, 0.794118)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_632fj"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1d4sh"]
 gradient = SubResource("Gradient_1d4sh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rjny7"]
 shader = ExtResource("1_mm3c4")
 shader_parameter/pixelation = Vector2(128, 128)
-shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_y7k2t")
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_71uog")
 shader_parameter/scroll_speed1 = Vector2(0.02, 0.007)
 shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_0oude")
 shader_parameter/scroll_speed2 = Vector2(-0.015, -0.004)
 shader_parameter/center_pos = Vector2(0.5, 0)
 shader_parameter/position_impact = 0.0
-shader_parameter/color_gardient = SubResource("GradientTexture1D_632fj")
+shader_parameter/color_gardient = SubResource("GradientTexture1D_1d4sh")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_y7k2t"]
 frequency = 0.0138
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_71uog"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_632fj"]
 seamless = true
 noise = SubResource("FastNoiseLite_y7k2t")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0oude"]
 frequency = 0.0046
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1d4sh"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rjny7"]
 seamless = true
 noise = SubResource("FastNoiseLite_0oude")
 
@@ -56,19 +56,19 @@ noise = SubResource("FastNoiseLite_0oude")
 offsets = PackedFloat32Array(0.489305, 0.721925)
 colors = PackedColorArray(1, 0.761667, 0.45, 0, 0.68, 0.517933, 0.306, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_rjny7"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iabbl"]
 gradient = SubResource("Gradient_632fj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iabbl"]
 shader = ExtResource("1_mm3c4")
 shader_parameter/pixelation = Vector2(128, 128)
-shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_71uog")
+shader_parameter/cloud_noise1 = SubResource("NoiseTexture2D_632fj")
 shader_parameter/scroll_speed1 = Vector2(0.02, 0.007)
-shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_1d4sh")
+shader_parameter/cloud_noise2 = SubResource("NoiseTexture2D_rjny7")
 shader_parameter/scroll_speed2 = Vector2(-0.015, -0.004)
 shader_parameter/center_pos = Vector2(0.5, 0)
 shader_parameter/position_impact = 0.73
-shader_parameter/color_gardient = SubResource("GradientTexture1D_rjny7")
+shader_parameter/color_gardient = SubResource("GradientTexture1D_iabbl")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwcxs"]
 size = Vector2(1186, 20)

@@ -97,19 +97,28 @@ texture = ExtResource("1_d1od2")
 [node name="ColorRect" type="ColorRect" parent="Node2D"]
 z_index = 2
 material = SubResource("ShaderMaterial_7wvbm")
-offset_left = 119.0
-offset_top = -222.0
-offset_right = 703.0
-offset_bottom = 362.0
+offset_left = 53.0
+offset_top = -180.0
+offset_right = 637.0
+offset_bottom = 404.0
 rotation = 0.206124
+
+[node name="ColorRect3" type="ColorRect" parent="Node2D"]
+z_index = 2
+material = SubResource("ShaderMaterial_7wvbm")
+offset_left = 469.0
+offset_top = -239.0
+offset_right = 1053.0
+offset_bottom = 345.0
+rotation = 0.523598
 
 [node name="ColorRect2" type="ColorRect" parent="Node2D"]
 z_index = 2
 material = SubResource("ShaderMaterial_7wvbm")
-offset_left = 969.0
-offset_top = -213.0
-offset_right = 1553.0
-offset_bottom = 371.0
+offset_left = 946.0
+offset_top = -177.0
+offset_right = 1530.0
+offset_bottom = 407.0
 rotation = -0.34616
 scale = Vector2(-1, 1)
 
@@ -232,7 +241,7 @@ shape = SubResource("RectangleShape2D_kwcxs")
 
 [node name="pillar1" type="Sprite2D" parent="." node_paths=PackedStringArray("fade")]
 texture_filter = 1
-position = Vector2(384, 599)
+position = Vector2(319, 599)
 scale = Vector2(5, 5)
 texture = ExtResource("5_bfqb0")
 region_enabled = true
@@ -274,7 +283,7 @@ texture = ExtResource("9_2hkft")
 
 [node name="pillar2" type="Sprite2D" parent="." node_paths=PackedStringArray("fade")]
 texture_filter = 1
-position = Vector2(717, 599)
+position = Vector2(547, 601)
 scale = Vector2(5, 5)
 texture = ExtResource("5_bfqb0")
 region_enabled = true
@@ -326,6 +335,65 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="pillar2/Label"]
+modulate = Color(2, 2, 2, 1)
+position = Vector2(19, 10.6)
+texture = ExtResource("9_2hkft")
+
+[node name="pillar3" type="Sprite2D" parent="." node_paths=PackedStringArray("fade")]
+texture_filter = 1
+position = Vector2(758, 599)
+scale = Vector2(5, 5)
+texture = ExtResource("5_bfqb0")
+region_enabled = true
+region_rect = Rect2(138, 109, 12, 6)
+script = ExtResource("7_3wyi3")
+scene = "res://scenes/lambentdomain.tscn"
+fade = NodePath("../ColorRect")
+
+[node name="Sprite2D" type="Sprite2D" parent="pillar3"]
+texture_filter = 1
+position = Vector2(0.2, -7.2)
+texture = ExtResource("5_bfqb0")
+region_enabled = true
+region_rect = Rect2(107, 184, 10, 11)
+
+[node name="Sprite2D2" type="Sprite2D" parent="pillar3"]
+show_behind_parent = true
+position = Vector2(-7.2, -7.8)
+rotation = 0.230174
+texture = ExtResource("5_bfqb0")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(138, 186, 12, 9)
+
+[node name="Sprite2D3" type="Sprite2D" parent="pillar3"]
+show_behind_parent = true
+position = Vector2(6.6, -7.8)
+rotation = -0.226893
+texture = ExtResource("5_bfqb0")
+region_enabled = true
+region_rect = Rect2(138, 186, 12, 9)
+
+[node name="Area2D" type="Area2D" parent="pillar3"]
+scale = Vector2(0.2, 0.2)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pillar3/Area2D"]
+shape = SubResource("CircleShape2D_hlsmc")
+
+[node name="Label" type="Label" parent="pillar3"]
+offset_left = -19.0
+offset_top = -34.0
+offset_right = 21.0
+offset_bottom = -22.0
+theme_override_fonts/font = ExtResource("8_441x5")
+theme_override_font_sizes/font_size = 8
+text = "Challenge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="pillar3/Label"]
 modulate = Color(2, 2, 2, 1)
 position = Vector2(19, 10.6)
 texture = ExtResource("9_2hkft")
