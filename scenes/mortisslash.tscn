@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbyrvnse6nish"]
+[gd_scene load_steps=12 format=3 uid="uid://cbyrvnse6nish"]
 
 [ext_resource type="Texture2D" uid="uid://l6msnam3oklf" path="res://assets/slashes-2.svg" id="1_3kfiw"]
 [ext_resource type="Script" uid="uid://dfhlwckyhvt63" path="res://scripts/mortisslash.gd" id="2_wy6ks"]
 [ext_resource type="PackedScene" uid="uid://bdviunspcrpsd" path="res://scenes/fabababa.tscn" id="3_wy6ks"]
+[ext_resource type="AudioStream" uid="uid://bl5ni5v36wec8" path="res://assets/Dash.wav" id="4_3ujj3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3ujj3"]
 atlas = ExtResource("1_3kfiw")
@@ -69,5 +70,10 @@ script = ExtResource("2_wy6ks")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
 shape = SubResource("CircleShape2D_3ujj3")
+
+[node name="audiocue3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3ujj3")
+pitch_scale = 2.0
+autoplay = true
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

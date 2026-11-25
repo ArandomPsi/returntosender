@@ -1,8 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2x0gmttqma2x"]
+[gd_scene load_steps=27 format=3 uid="uid://b2x0gmttqma2x"]
 
 [ext_resource type="Texture2D" uid="uid://csax5mwlwpcov" path="res://assets/mountainthingy.png" id="1_7g3wk"]
 [ext_resource type="PackedScene" uid="uid://cmagugo1dt6ek" path="res://scenes/player.tscn" id="1_kcicl"]
-[ext_resource type="Texture2D" uid="uid://d12flwelro1u6" path="res://assets/Flame01.png" id="1_qkuca"]
 [ext_resource type="Shader" path="res://shaders/tiler.gdshader" id="1_sw5db"]
 [ext_resource type="Texture2D" uid="uid://dwv4qaac1rhdi" path="res://shaders/star.png" id="2_jm8e2"]
 [ext_resource type="Shader" path="res://shaders/clouds.gdshader" id="2_sw5db"]
@@ -10,47 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://dei0ai8jwh617" path="res://assets/tyrannyfloor.png" id="5_jm8e2"]
 
 [sub_resource type="Gradient" id="Gradient_y4sns"]
-colors = PackedColorArray(0.3575, 0, 0.65, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.607306)
+colors = PackedColorArray(0.3575, 0, 0.65, 1, 0.013, 0, 0.13, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_7g3wk"]
 gradient = SubResource("Gradient_y4sns")
 fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0.5, 0)
 metadata/_snap_enabled = true
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gvyxd"]
-blend_mode = 1
-
-[sub_resource type="Gradient" id="Gradient_ab6d1"]
-offsets = PackedFloat32Array(0.00857143, 0.208571, 0.48, 1)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_vihtk"]
-gradient = SubResource("Gradient_ab6d1")
-
-[sub_resource type="Curve" id="Curve_v2dvb"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.724044), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_4re7g"]
-curve = SubResource("Curve_v2dvb")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uu7q3"]
-particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 20.39
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(0, -1, 0)
-spread = 0.0
-initial_velocity_min = 446.15
-initial_velocity_max = 446.15
-gravity = Vector3(0, 0, 0)
-scale_min = 0.08
-scale_max = 0.08
-scale_curve = SubResource("CurveTexture_4re7g")
-color = Color(0.75, 0, 1, 1)
-color_ramp = SubResource("GradientTexture1D_vihtk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qkuca"]
 shader = ExtResource("1_sw5db")
@@ -150,14 +116,6 @@ position = Vector2(608.5, 355.5)
 scale = Vector2(20.0156, 12.1094)
 texture = SubResource("GradientTexture2D_7g3wk")
 
-[node name="hyperchargeaura" type="GPUParticles2D" parent="bg"]
-material = SubResource("CanvasItemMaterial_gvyxd")
-position = Vector2(584, 465)
-amount = 20
-texture = ExtResource("1_qkuca")
-lifetime = 0.4
-process_material = SubResource("ParticleProcessMaterial_uu7q3")
-
 [node name="Sprite2D8" type="Sprite2D" parent="bg"]
 material = SubResource("ShaderMaterial_qkuca")
 position = Vector2(608.5, 355.5)
@@ -250,7 +208,7 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_kwcxs")
 
 [node name="boss3" parent="." instance=ExtResource("2_y4sns")]
-position = Vector2(797, 225)
+position = Vector2(590, 465)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_qkuca")
