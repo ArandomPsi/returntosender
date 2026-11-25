@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmce5wyy544lo"]
+[gd_scene load_steps=12 format=3 uid="uid://dmce5wyy544lo"]
 
 [ext_resource type="Texture2D" uid="uid://cjgtohubicr48" path="res://assets/hyperbats.svg" id="1_7c5ul"]
 [ext_resource type="Script" uid="uid://b7riiewfx51q6" path="res://scripts/hyperbats.gd" id="1_oqvl7"]
@@ -35,18 +35,41 @@ color_ramp = SubResource("GradientTexture1D_oqvl7")
 [sub_resource type="CircleShape2D" id="CircleShape2D_oqvl7"]
 radius = 47.3814
 
+[sub_resource type="Gradient" id="Gradient_oqvl7"]
+colors = PackedColorArray(0.7, 0, 1, 0.490196, 0.7, 0, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_een6d"]
+gradient = SubResource("Gradient_oqvl7")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
 [node name="hyperbats" type="Node2D"]
 script = ExtResource("1_oqvl7")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 30
+amount = 15
 texture = ExtResource("1_7c5ul")
 lifetime = 0.2
 fixed_fps = 60
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 process_material = SubResource("ParticleProcessMaterial_wsu86")
 
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 15
+texture = ExtResource("1_7c5ul")
+lifetime = 0.2
+fixed_fps = 60
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_wsu86")
+
 [node name="fabababa" parent="." instance=ExtResource("2_5yjwe")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fabababa"]
 shape = SubResource("CircleShape2D_oqvl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.1875, 2.1875)
+texture = SubResource("GradientTexture2D_een6d")

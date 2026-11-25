@@ -197,46 +197,34 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("AudioStreamPlayer5:playing")
+tracks/9/path = NodePath("hud/ColorRect:color")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("hud/ColorRect:color")
-tracks/10/interp = 1
+tracks/10/path = NodePath("Node2D/scythe:rotation")
+tracks/10/interp = 3
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [-1.5708]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("Node2D/scythe:rotation")
-tracks/11/interp = 3
+tracks/11/path = NodePath("hyperchargeaura:emitting")
+tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-1.5708]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("hyperchargeaura:emitting")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -281,7 +269,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_lm80i"]
 resource_name = "dash"
-length = 2.0
+length = 4.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -289,8 +277,8 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.533333, 0.633333, 1.06667, 1.1, 1.2, 1.63333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.933333, 1.13333, 1.23333, 1.66667, 1.7, 1.8, 2.23333, 3.9042),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"togglemovement"
@@ -315,6 +303,9 @@ tracks/0/keys = {
 }, {
 "args": [],
 "method": &"togglemovement"
+}, {
+"args": [],
+"method": &"togglemovement"
 }]
 }
 tracks/1/type = "value"
@@ -336,10 +327,10 @@ tracks/2/path = NodePath("Node2D/scythe:rotation")
 tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.333333, 0.4, 0.466667, 0.533333, 0.733333, 0.866666, 0.933333, 1, 1.06667, 1.1, 1.3, 1.43333, 1.5, 1.56667, 1.63333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.8, 0.966667, 1, 1.06667, 1.13333, 1.33333, 1.46667, 1.53333, 1.6, 1.66667, 1.7, 1.9, 2.03333, 2.1, 2.16667, 2.23333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
+"values": [-1.5708, -1.02359, 6.1461, 6.1461, 7.14505, 9.10064, 10.5604, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708, -1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
 }
 
 [sub_resource type="Animation" id="Animation_tjn6w"]
@@ -381,7 +372,7 @@ tracks/1/path = NodePath(".:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.96667),
+"times": PackedFloat32Array(0, 1.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -429,7 +420,7 @@ tracks/5/path = NodePath("AudioStreamPlayer3:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(-0.1, 3.63333),
+"times": PackedFloat32Array(0, 3.63333),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -449,22 +440,10 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AudioStreamPlayer5:playing")
+tracks/7/path = NodePath("hud/ColorRect:color")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("hud/ColorRect:color")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
 "times": PackedFloat32Array(0.0333333, 3.3, 4.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
@@ -642,6 +621,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_u8nmc"]
 resource_name = "combospinner"
+length = 1.5
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -649,7 +629,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.633333),
+"times": PackedFloat32Array(0, 0.766667, 1.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "values": [{
 "args": [],
@@ -681,7 +661,7 @@ tracks/2/path = NodePath("Node2D/scythe:rotation")
 tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 0.566667, 0.633333, 0.7, 0.766667),
+"times": PackedFloat32Array(0.866667, 0.966667, 1.03333, 1.1, 1.16667, 1.23333),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-1.5708, -1.02359, 7.14505, 9.10064, 10.5604, -1.5708]
@@ -689,7 +669,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_rghjg"]
 resource_name = "hyperbats"
-length = 2.0
+length = 2.5
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -697,11 +677,14 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.133333, 0.666667, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "values": [{
 "args": [],
 "method": &"togglemovement"
+}, {
+"args": [],
+"method": &"smallshake"
 }, {
 "args": [],
 "method": &"dashtoplayer"
@@ -729,10 +712,10 @@ tracks/2/path = NodePath("Node2D/scythe:rotation")
 tracks/2/interp = 3
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.4, 0.5, 0.666667, 1.47652, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.763518, 0.966667, 1.06667, 1.23333, 2.04318, 2.36667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [-1.5708, 3.78771, 1.39574, 1.39574, -1.5708]
+"values": [-1.5708, 7.26977, 7.26977, -1.5708, 3.78771, 1.39574, 1.39574, -1.5708]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -741,7 +724,7 @@ tracks/3/path = NodePath("hyperchargeaura:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333, 0.2, 1.63333),
+"times": PackedFloat32Array(0.0333333, 0.133333, 2.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]

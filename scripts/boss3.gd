@@ -181,3 +181,6 @@ func hyperbats():
 	get_parent().add_child(b)
 	b.position = position
 	b.look_at(global.playerpos)
+
+func smallshake():
+	global.player.camerashake = 5
