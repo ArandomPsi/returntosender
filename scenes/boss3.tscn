@@ -1138,6 +1138,7 @@ color = Color(1, 1, 1, 0)
 
 [node name="impact" type="AnimatedSprite2D" parent="hud"]
 visible = false
+modulate = Color(0, 1, 0.233333, 1)
 position = Vector2(586.75, 334.5)
 scale = Vector2(1.59067, 1.53261)
 sprite_frames = SubResource("SpriteFrames_kfg2x")

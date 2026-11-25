@@ -167,8 +167,9 @@ func spawnparry(pos):
 func takedamage():
 	if iframes < 1:
 		spawnparry(global_position)
-		flash = 0.5
+		
 		if parryframes < 1: 
+			flash = 1
 			camerashake += 20
 			$parry.play()
 			hp -= 1
@@ -176,8 +177,9 @@ func takedamage():
 			get_tree().current_scene.add_child(b)
 			iframes = 10
 		else:
-			flash = 1
+			
 			spawncircles()
+			flash = 0.05
 			if randi_range(1,5) == 1:
 				hp += 1
 			hp = clamp(hp,0,5)

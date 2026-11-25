@@ -1,11 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy0kx70x4wnh3"]
 
-[ext_resource type="AudioStream" uid="uid://wpe763hxgtfm" path="res://assets/hero_damage_less_harsh_02.wav" id="1_f37bx"]
+[ext_resource type="AudioStream" uid="uid://j2dy3tcsufaq" path="res://assets/hit2.wav" id="1_f37bx"]
 [ext_resource type="Script" uid="uid://b5tuw83rif5pv" path="res://scripts/hitsound.gd" id="2_ktxc0"]
 
 [node name="hitsound" type="AudioStreamPlayer"]
 stream = ExtResource("1_f37bx")
+volume_db = 8.0
 autoplay = true
+bus = &"reverb"
 script = ExtResource("2_ktxc0")
 
 [connection signal="finished" from="." to="." method="_on_finished"]
