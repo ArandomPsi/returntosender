@@ -48,8 +48,8 @@ seamless = true
 noise = SubResource("FastNoiseLite_l126s")
 
 [sub_resource type="Gradient" id="Gradient_jm8e2"]
-offsets = PackedFloat32Array(0.475936, 0.721925)
-colors = PackedColorArray(0.219, 0.45, 0.2025, 0, 0.219, 0.45, 0.2025, 1)
+offsets = PackedFloat32Array(0.510695, 0.721925)
+colors = PackedColorArray(0.219, 0.45, 0.2025, 0, 0.483334, 0, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_qkuca"]
 gradient = SubResource("Gradient_jm8e2")
@@ -80,8 +80,8 @@ seamless = true
 noise = SubResource("FastNoiseLite_gvyxd")
 
 [sub_resource type="Gradient" id="Gradient_v2dvb"]
-offsets = PackedFloat32Array(0.566845, 1)
-colors = PackedColorArray(0.219, 0.45, 0.2025, 0, 0.219, 0.45, 0.2025, 1)
+offsets = PackedFloat32Array(0.550802, 0.893048)
+colors = PackedColorArray(0.219, 0.45, 0.2025, 0, 0.165, 0, 0.45, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_uu7q3"]
 gradient = SubResource("Gradient_v2dvb")
